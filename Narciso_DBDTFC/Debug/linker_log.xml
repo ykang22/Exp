@@ -1,0 +1,716 @@
+<?xml version="1.0" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/Program Files/Analog Devices/VisualDSP 5.1/System/linker_log.xsl"?>
+<DOCUMENT gen_time='Tue Apr 25 16:44:29 2017
+'>
+<MSG id='02EDB958' mid='li2153' type='Warning' suppressed=''>
+<TEXT><![CDATA[Input sections have inconsistent qualifiers as follows.
+unknown   | CDSP_Runtime_Header.doj(.frt)
+unknown   | CDSP_Runtime_Header.doj(.gdt)
+unknown   | CDSP_Runtime_Header.doj(seg_rth)
+DOUBLE32  | .\Debug\ComplexVar.doj(seg_dmda)
+DOUBLE32  | .\Debug\ComplexVar.doj(seg_pmco)
+DOUBLE32  | .\Debug\hardware.doj(seg_ctdm)
+DOUBLE32  | .\Debug\hardware.doj(seg_dmda)
+DOUBLE32  | .\Debug\hardware.doj(seg_pmco)
+DOUBLE32  | .\Debug\main.doj(seg_SDRAM_NOINIT)
+DOUBLE32  | .\Debug\main.doj(seg_ctdm)
+DOUBLE32  | .\Debug\main.doj(seg_dmda)
+DOUBLE32  | .\Debug\main.doj(seg_pmco)
+DOUBLE32  | ..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_DataLink_Down)
+DOUBLE32  | ..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_DataLink_Up)
+DOUBLE32  | ..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_SRAM)
+DOUBLE32  | ..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_dmda)
+DOUBLE32  | ..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)
+DOUBLE32  | .\Debug\WT_CurrentObserver.doj(seg_dmda)
+DOUBLE32  | .\Debug\WT_CurrentObserver.doj(seg_pmco)
+DOUBLEANY | libc161.dlb[atexit.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[atexit.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[clear_interrupt.doj](seg_int_code)
+DOUBLEANY | libc161.dlb[clear_interrupt.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[divrem_u32.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[divrem_s32.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[errno.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[errno.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[expf.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[expf.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[fixsfdi.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[float_divide.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[fmodf.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[heap.doj](seg_init)
+DOUBLEANY | libc161.dlb[inits.doj](seg_init)
+DOUBLEANY | libc161.dlb[int_cnfl.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[int_cnsl.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[int_cnss.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[int_tabl.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[interrup.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[irptl.doj](seg_int_code)
+DOUBLEANY | libc161.dlb[lib_fdiv.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[num_heaps.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[powf.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[powf.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[rtheap.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[set_args.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[set_args.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[set_c.doj](seg_ctdml)
+DOUBLEANY | libc161.dlb[set_c.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[sinf.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[sinf.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[sqrtf.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[sure_rti.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[xatexit.doj](seg_dmda)
+DOUBLEANY | libc161.dlb[xatexit.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[int_cncbl.doj](seg_pmco)
+DOUBLEANY | libc161.dlb[int_cntl.doj](seg_pmco)
+DOUBLEANY | libcpp.dlb[memzero.doj](seg_dmda)
+DOUBLEANY | libcpp.dlb[memzero.doj](seg_pmco)
+DOUBLEANY | libcpp.dlb[process_dtors.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[ad_convert.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[ad_convert.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_base.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_base.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_callib.vdsp.doj](seg_SRAM_calib)
+DOUBLEANY | XCP2005LIB.dlb[adda_callib.vdsp.doj](seg_ctdm)
+DOUBLEANY | XCP2005LIB.dlb[adda_callib.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_callib.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_config_lsiad.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_config_lsiad.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_converter.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_converter.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_external_calibration.vdsp.doj](seg_SRAM)
+DOUBLEANY | XCP2005LIB.dlb[adda_external_calibration.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_external_calibration.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_gain.vdsp.doj](seg_SRAM)
+DOUBLEANY | XCP2005LIB.dlb[adda_gain.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_gain.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_gain.vdsp.doj](seg_pmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_init.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_init.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_irq_ack.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_irq_ack.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_irq_configure.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_irq_configure.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_offs.vdsp.doj](seg_SRAM)
+DOUBLEANY | XCP2005LIB.dlb[adda_offs.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[adda_offs.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[adda_offs.vdsp.doj](seg_pmda)
+DOUBLEANY | XCP2005LIB.dlb[AixScope_init.doj](seg_CommBuffers)
+DOUBLEANY | XCP2005LIB.dlb[AixScope_init.doj](seg_ctdm)
+DOUBLEANY | XCP2005LIB.dlb[AixScope_init.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[AixScope_init.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[AixScope_update.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[AixScope_update.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[AN.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[AN.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[atomic.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[atomic.doj](seg_pmco)
+unknown   | XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)
+unknown   | XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)
+DOUBLEANY | XCP2005LIB.dlb[button_pressed.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[button_pressed.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[CalibBlock.doj](seg_SRAM)
+DOUBLEANY | XCP2005LIB.dlb[CalibBlock.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[CalibBlock.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[CDSP_LP0I_handler.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[CDSP_LP0I_handler.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[ComUnit.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[ComUnit.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[delay.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[delay.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[error.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[error.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[helpers_check_signature.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[helpers_check_signature.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[I2C_delay_time.vdsp.doj](seg_ctdm)
+DOUBLEANY | XCP2005LIB.dlb[I2C_delay_time.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[I2C_delay_time.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[I2C_hold_time_fast.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[I2C_hold_time_fast.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[I2C_hold_time_standard.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[I2C_hold_time_standard.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[I2C_init.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[I2C_init.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[I2C_ready.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[I2C_ready.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[I2C_timeout.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[I2C_timeout.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[I2C_tryinterval.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[I2C_tryinterval.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[ic0_shadow.vdsp.doj](seg_SRAM)
+DOUBLEANY | XCP2005LIB.dlb[ic0_shadow.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[ic0_shadow.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[ic_config.vdsp.doj](seg_SRAM)
+DOUBLEANY | XCP2005LIB.dlb[ic_config.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[ic_config.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[irq_add_listener.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[irq_add_listener.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[IRQ_disable.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[IRQ_disable.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[IRQ_enable.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[IRQ_enable.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[irq_functions.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[irq_functions.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[irq_rewrite_ic_table.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[irq_rewrite_ic_table.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[IRQ_set_func.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[IRQ_set_func.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[irq_set_handler.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[irq_set_handler.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[irq_transfer_ic0.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[irq_transfer_ic0.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[LED.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[LED.doj](seg_pmco)
+unknown   | XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)
+DOUBLEANY | XCP2005LIB.dlb[msc_clear_shutdown.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[msc_clear_shutdown.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_buffer.vdsp.doj](seg_SRAM)
+DOUBLEANY | XCP2005LIB.dlb[serial_buffer.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_buffer.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_buffer_pointer.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_buffer_pointer.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_clear_getbuffer.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_clear_getbuffer.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_cmdhandler_func.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_cmdhandler_func.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_getchar.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_getchar.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_init.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_init.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_putchar.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_putchar.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_putchar_hex.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_putchar_hex.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_putfloat_dec.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_putfloat_dec.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_putint_dec.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_putint_dec.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_putlinefeed.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_putlinefeed.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_putstring.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_putstring.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_putuint_dec.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_putuint_dec.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_set_bautrate.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_set_bautrate.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_set_cmdhandler.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_set_cmdhandler.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[serial_timeout.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[serial_timeout.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[Terminal.vdsp.doj](seg_ctdm)
+DOUBLEANY | XCP2005LIB.dlb[Terminal.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[timer0_init.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[timer0_init.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[timer0_set_irqfunc.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[timer0_set_irqfunc.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[timer0_set_periode.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[timer0_set_periode.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[timer0_set_periode_cycles.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[timer0_set_periode_cycles.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[timer0_start.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[timer0_start.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[timer0_stop.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[timer0_stop.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[write_protect_off.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[write_protect_off.vdsp.doj](seg_pmco)
+DOUBLEANY | XCP2005LIB.dlb[write_protect_on.vdsp.doj](seg_dmda)
+DOUBLEANY | XCP2005LIB.dlb[write_protect_on.vdsp.doj](seg_pmco)]]></TEXT>
+</MSG>
+<MSG id='02D3A498' mid='li3201' type='Informational' suppressed=''>
+<TEXT><![CDATA[Successfully eliminated 25671 bytes in processor 'p0'
+]]></TEXT>
+<EXTENDED_INFO><![CDATA[Eliminated object (___eh_frt, ___eh_frt+0x1) of size 5 bytes from 'CDSP_Runtime_Header.doj(.frt)'
+Eliminated object (___eh_gdt, ___eh_gdt+0x1) of size 5 bytes from 'CDSP_Runtime_Header.doj(.gdt)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from '.\Debug\ComplexVar.doj(seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_timer0, ._timer0.end) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_TIMER, ._TIMER.end) of size 20 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_WATCHDOG, ._WATCHDOG.end) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_DISPLAY, ._DISPLAY.end) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_KEY, ._KEY.end) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_AD, ._AD.end) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_DA, ._DA.end) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (0x27,0x28) of size 5 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_signature__8msc2k001, ._signature__8msc2k001.end) of size 40 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_bAck__13MSCTimerClass, ._bAck__13MSCTimerClass.end) of size 20 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_bEnabled__13MSCTimerClass, ._bEnabled__13MSCTimerClass.end) of size 20 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_signature__8stdio001, ._signature__8stdio001.end) of size 40 bytes from '.\Debug\hardware.doj(seg_dmda)'
+Eliminated object (_check_signature__8msc2k001CFv, ._check_signature__8msc2k001CFv.end) of size 66 bytes from '.\Debug\hardware.doj(seg_pmco)'
+Eliminated object (_check_signature__FRC8stdio001, ._check_signature__FRC8stdio001.end) of size 66 bytes from '.\Debug\hardware.doj(seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i2c, ._i2c.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_comm_serve_count, ._comm_serve_count.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_ref, ._v_ref.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_ref_mag, ._v_ref_mag.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_pwm_t_phase_comp_ref, ._pwm_t_phase_comp_ref.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_pwm_t_phase_comp, ._pwm_t_phase_comp.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_menu_count, ._menu_count.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_init_count, ._init_count.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_E_norm_d_s_M, ._E_norm_d_s_M.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_E_norm_q_s_M, ._E_norm_q_s_M.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_data, ._data.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_max_2, ._v_max_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_min_2, ._v_min_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dc_link_filtered, ._v_dc_link_filtered.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_q_remnant_1, ._v_q_remnant_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_pre_sat_1, ._v_pre_sat_1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_a_inv_2, ._i_a_inv_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_b_inv_2, ._i_b_inv_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_c_inv_2, ._i_c_inv_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_c_offset_1, ._i_c_offset_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_c_offset_2, ._i_c_offset_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_a_inv_offset_2, ._i_a_inv_offset_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_b_inv_offset_2, ._i_b_inv_offset_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_c_inv_offset_2, ._i_c_inv_offset_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_cnt_w_r, ._delta_cnt_w_r.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_motion_flag, ._motion_flag.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_w_bar, ._w_bar.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_0, ._theta_0.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_0_1, ._theta_0_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_rpm, ._rpm.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_err_1, ._theta_err_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_err_1_km1, ._theta_err_1_km1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_err_accum_1, ._theta_err_accum_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_cff_obsr_1, ._t_cff_obsr_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_hat_kp1_1, ._theta_hat_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_hat_k_1, ._theta_hat_k_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_obsr_1, ._t_obsr_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_l_hat_kp1_1, ._omega_l_hat_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_l_hat_k_1, ._omega_l_hat_k_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_r_hat_kp1_1, ._omega_r_hat_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_r_hat_k_1, ._omega_r_hat_k_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_bar_hat_kp1_1, ._omega_bar_hat_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_bar_hat_k_1, ._omega_bar_hat_k_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_torq_obsr_1, ._torq_obsr_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_kp1_1, ._omega_dot_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_filt_kp1_1, ._omega_dot_filt_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_enc_filtered, ._omega_enc_filtered.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_filtered, ._theta_filtered.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_err_2, ._theta_err_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_err_accum_2, ._theta_err_accum_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_cff_obsr_2, ._t_cff_obsr_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_hat_kp1_2, ._theta_hat_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_hat_k_2, ._theta_hat_k_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_l_hat_kp1_2, ._omega_l_hat_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_l_hat_k_2, ._omega_l_hat_k_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_r_hat_kp1_2, ._omega_r_hat_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_r_hat_k_2, ._omega_r_hat_k_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_bar_hat_kp1_2, ._omega_bar_hat_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_bar_hat_k_2, ._omega_bar_hat_k_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_torq_obsr_2, ._torq_obsr_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_kp1_2, ._omega_dot_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_filt_kp1_2, ._omega_dot_filt_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_err_kp1_1, ._omega_err_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_err_kp1_accum1_1, ._omega_err_kp1_accum1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_err_kp1_accum2_1, ._omega_err_kp1_accum2_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_cff_sfb_1, ._t_cff_sfb_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_sfb_1, ._t_sfb_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_sin_amp_2, ._tem_star_sin_amp_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_sin_freq_2, ._tem_star_sin_freq_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_sin_offset_2, ._tem_star_sin_offset_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_omega_2, ._drivecycle_omega_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_err_km1_1, ._omega_err_km1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_omega_dot_slew_2, ._drivecycle_omega_dot_slew_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_omega_dot_km1_2, ._drivecycle_omega_dot_km1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_star_2, ._omega_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_array_counter_2, ._drivecycle_array_counter_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_counter_2, ._drivecycle_counter_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_slew_2, ._drivecycle_slew_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_slew_p1_2, ._drivecycle_slew_p1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_speed_2, ._drivecycle_speed_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_drivecycle_omega_dot_2, ._drivecycle_omega_dot_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_slew_1, ._tem_star_slew_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_km1_1, ._tem_star_km1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_err_kp1_2, ._omega_err_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_err_kp1_accum1_2, ._omega_err_kp1_accum1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_err_kp1_accum2_2, ._omega_err_kp1_accum2_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_cff_sfb_2, ._t_cff_sfb_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_sfb_2, ._t_sfb_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_ba1, ._ba1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_ksa1, ._ksa1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_kisa1, ._kisa1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_1, ._delta_theta_star_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_err_1, ._delta_theta_star_err_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_err_accum_1, ._delta_theta_star_err_accum_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_err_accum2_1, ._delta_theta_star_err_accum2_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_ba2, ._ba2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_ksa2, ._ksa2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_kisa2, ._kisa2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_2, ._delta_theta_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_err_2, ._delta_theta_star_err_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_err_accum_2, ._delta_theta_star_err_accum_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_star_err_accum2_2, ._delta_theta_star_err_accum2_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_err_1, ._delta_theta_err_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_err_accum_1, ._delta_theta_err_accum_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_err_accum2_1, ._delta_theta_err_accum2_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_torq_obsr_ctrl_1, ._torq_obsr_ctrl_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_hat_k_1, ._delta_theta_hat_k_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_hat_kp1_1, ._delta_theta_hat_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_hat_k_1, ._omega_hat_k_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_hat_kp1_1, ._omega_hat_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_hat_k_1, ._omega_dot_hat_k_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_hat_kp1_1, ._omega_dot_hat_kp1_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_err_2, ._delta_theta_err_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_err_accum_2, ._delta_theta_err_accum_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_err_accum2_2, ._delta_theta_err_accum2_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_torq_obsr_ctrl_2, ._torq_obsr_ctrl_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_hat_k_2, ._delta_theta_hat_k_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_theta_hat_kp1_2, ._delta_theta_hat_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_hat_k_2, ._omega_hat_k_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_hat_kp1_2, ._omega_hat_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_hat_k_2, ._omega_dot_hat_k_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_dot_hat_kp1_2, ._omega_dot_hat_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_k_l, ._k_l.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_Lambda_idx_act, ._Lambda_idx_act.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_Lambda_idx1, ._Lambda_idx1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_Lambda_idx2, ._Lambda_idx2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lamda_dr_hat_1, ._lamda_dr_hat_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_s_omega_e_star_1, ._s_omega_e_star_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_s_star_1, ._theta_s_star_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_rf_star_1, ._theta_rf_star_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_flux_weak, ._flux_weak.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_k_p_ireg_1, ._k_p_ireg_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_k_i_ireg_1, ._k_i_ireg_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_q_e_star_1, ._i_q_e_star_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_d_e_star_1, ._i_d_e_star_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_q_e_1, ._i_q_e_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_d_e_1, ._i_d_e_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_e_err_1, ._i_dqs_e_err_1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_e_err_int_1, ._i_dqs_e_err_int_1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_e_star_1, ._v_dqs_e_star_1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_e_star_vs_1, ._v_dqs_e_star_vs_1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_s_star_1, ._i_dqs_s_star_1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_e_ref_2, ._theta_e_ref_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lamda_dr_hat_2, ._lamda_dr_hat_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_s_omega_e_star_2, ._s_omega_e_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_s_star_2, ._theta_s_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_rf_star_2, ._theta_rf_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_obsr_2, ._t_obsr_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_q_e_star_2, ._i_q_e_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_d_e_star_2, ._i_d_e_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_q_e_2, ._i_q_e_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_d_e_2, ._i_d_e_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_e_star_2, ._v_dqs_e_star_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_s_star_pre_2, ._v_dqs_s_star_pre_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_e_star_vs_2, ._v_dqs_e_star_vs_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_s_star_2, ._i_dqs_s_star_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_load_select_1, ._load_select_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_e_star_dbcr_2_km1, ._v_dqs_e_star_dbcr_2_km1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_e_err_km1_2, ._i_dqs_e_err_km1_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_e_star_dbcr_int_2, ._v_dqs_e_star_dbcr_int_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_C_freq_2, ._C_freq_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_speed_switch_2, ._speed_switch_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_phi, ._phi.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_delta_tem_2, ._delta_tem_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_m_2, ._m_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_b_2, ._b_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_z_d_2, ._z_d_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_z_q_2, ._z_q_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_r_star_2, ._lambda_r_star_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_r_2, ._lambda_r_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_r_k_q, ._lambda_r_k_q.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_root_1_2, ._root_1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_root_2_2, ._root_2_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_s_star_db_km1_2, ._v_dqs_s_star_db_km1_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_Lambda_s_DP, ._Lambda_s_DP.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_s_star_optimal_2, ._lambda_s_star_optimal_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_overmod_ratio_2, ._overmod_ratio_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_overmod_angle_2, ._overmod_angle_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_overmod_decrease_2, ._overmod_decrease_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_overmod_angle_add_2, ._overmod_angle_add_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_mu_angle_2, ._mu_angle_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_hat_om_kp1_2, ._tem_hat_om_kp1_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_pre_2, ._tem_star_pre_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_s_angle, ._lambda_s_angle.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_s_star_mag_2, ._v_dqs_s_star_mag_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_star_counter_2, ._lambda_star_counter_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_current_obsr_harm_decoup_2, ._v_dqs_current_obsr_harm_decoup_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_dqs_current_obsr_km1_2, ._v_dqs_current_obsr_km1_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_r_2, ._i_dqs_r_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_r_km1_2, ._i_dqs_r_km1_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqr_s_int_km1, ._lambda_dqr_s_int_km1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqr_s_int, ._lambda_dqr_s_int.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqr_s_vm_2, ._lambda_dqr_s_vm_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqs_s_hat_kp1_2, ._lambda_dqs_s_hat_kp1_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqs_r_hat_kp1_2, ._lambda_dqs_r_hat_kp1_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqs_r_hat_k_2, ._lambda_dqs_r_hat_k_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqs_e_2, ._lambda_dqs_e_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqs_e_2_k1, ._lambda_dqs_e_2_k1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqr_e_2, ._lambda_dqr_e_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_qds_s_vm_ff_2, ._lambda_qds_s_vm_ff_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_qds_s_vm_ff_km1_2, ._lambda_qds_s_vm_ff_km1_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_hat_kp1_2_k1, ._tem_hat_kp1_2_k1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_hat_kp1_2_k2, ._tem_hat_kp1_2_k2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_hat_kp1_2_k3, ._tem_hat_kp1_2_k3.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_p_in_2, ._p_in_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_opt_2, ._tem_star_opt_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tau_s_prime, ._tau_s_prime.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_avg, ._tem_star_avg.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_i, ._t_i.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_sum, ._t_sum.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (0x1bf,0x1c0) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_avg, ._t_avg.end) of size 2500 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_avg_old, ._t_avg_old.end) of size 2500 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_omega_slip, ._omega_slip.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_es_2, ._i_dqs_es_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqs_es_2_km1, ._i_dqs_es_2_km1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_lambda_dqs_e_2_kp1, ._lambda_dqs_e_2_kp1.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_num, ._num.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_den, ._den.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_p_iron_2, ._p_iron_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_p_cond_2, ._p_cond_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_p_loss_2, ._p_loss_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_i_dqr_s_2, ._i_dqr_s_2.end) of size 10 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_ke, ._ke.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_kh, ._kh.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_compressor, ._t_compressor.end) of size 360 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_Lambda_dp, ._Lambda_dp.end) of size 100 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_t_profile_error, ._t_profile_error.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_Kp, ._Kp.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_wc_dt, ._wc_dt.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_c, ._theta_c.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_idx1, ._theta_idx1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_idx2, ._theta_idx2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_theta_idx_act, ._theta_idx_act.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_m_interp, ._m_interp.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_crank, ._tem_crank.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_crank_hat, ._tem_crank_hat.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_tem_star_sfb_total_2, ._tem_star_sfb_total_2.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_over_mod_flag, ._over_mod_flag.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_dyn_macro_flag, ._dyn_macro_flag.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_dyn_macro_timer, ._dyn_macro_timer.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_test_5, ._test_5.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_v_exc_count_1, ._v_exc_count_1.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (__this__39pwm1_pwm16001__tm__18_XCUiL_9_209715712, .__this__39pwm1_pwm16001__tm__18_XCUiL_9_209715712.end) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (0x685,0x686) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (.sblock2.0, .sblock2.0.end) of size 190 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (.sCUsers.1, .sCUsers.1.end) of size 680 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (0x7e9,0x7ea) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (.sAssert.171, .sAssert.171.end) of size 160 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (.sCUsers.172, .sCUsers.172.end) of size 680 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (.sAssert.1313, .sAssert.1313.end) of size 135 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (0x8ad,0x8ae) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (0x96d,0x96e) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (0x981,0x982) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (0x9d7,0x9d8) of size 5 bytes from '.\Debug\main.doj(seg_dmda)'
+Eliminated object (_extract_signed__tm__20_XCUiL_1_0XCUiL_2_32__FUi_i, ._extract_signed__tm__20_XCUiL_1_0XCUiL_2_32__FUi_i.end) of size 30 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (_irq__tm__26_Q2_7classAN12ADreadyEvent__FRZ1ZRC4Tirq_RC4Tirq, ._irq__tm__26_Q2_7classAN12ADreadyEvent__FRZ1ZRC4Tirq_RC4Tirq.end) of size 108 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (_pwm_set_combined_dutycycle__tm__125_Q2_39pwm2_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715888__FRZ1Zf_f, ._pwm_set_combined_dutycycle__tm__125_Q2_39pwm2_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715888__FRZ1Zf_f.end) of size 174 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (_pwm_set_combined_dutycycle__tm__125_Q2_39pwm2_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715904__FRZ1Zf_f, ._pwm_set_combined_dutycycle__tm__125_Q2_39pwm2_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715904__FRZ1Zf_f.end) of size 174 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (_pwm_set_combined_dutycycle__tm__125_Q2_39pwm2_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715920__FRZ1Zf_f, ._pwm_set_combined_dutycycle__tm__125_Q2_39pwm2_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715920__FRZ1Zf_f.end) of size 174 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (_pwm_set_combined_dutycycle__tm__125_Q2_39pwm1_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715792__FRZ1Zf_f, ._pwm_set_combined_dutycycle__tm__125_Q2_39pwm1_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715792__FRZ1Zf_f.end) of size 174 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (_pwm_set_combined_dutycycle__tm__125_Q2_39pwm1_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715808__FRZ1Zf_f, ._pwm_set_combined_dutycycle__tm__125_Q2_39pwm1_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715808__FRZ1Zf_f.end) of size 174 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (_pwm_set_combined_dutycycle__tm__125_Q2_39pwm1_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715824__FRZ1Zf_f, ._pwm_set_combined_dutycycle__tm__125_Q2_39pwm1_pwm16001__tm__18_XCUiL_9_20971571278Pair__tm__66_46reg_writeonly_word__tm__20_XCUiL_1_0XCUiL_2_32XCUiL_9_209715824__FRZ1Zf_f.end) of size 174 bytes from '.\Debug\main.doj(seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from '.\Debug\WT_CurrentObserver.doj(seg_dmda)'
+Eliminated object (_get_I_dq_f_hat_kp1__15CurrentObserverFv, ._get_I_dq_f_hat_kp1__15CurrentObserverFv.end) of size 48 bytes from '.\Debug\WT_CurrentObserver.doj(seg_pmco)'
+Eliminated object (_get_E_q_est__15CurrentObserverFv, ._get_E_q_est__15CurrentObserverFv.end) of size 42 bytes from '.\Debug\WT_CurrentObserver.doj(seg_pmco)'
+Eliminated object (_get_E_d_est__15CurrentObserverFv, ._get_E_d_est__15CurrentObserverFv.end) of size 36 bytes from '.\Debug\WT_CurrentObserver.doj(seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[CDSP_LP0I_handler.doj](seg_dmda)'
+Eliminated object (_LP0, _LP0+0x1) of size 5 bytes from 'XCP2005LIB.dlb[CDSP_LP0I_handler.doj](seg_dmda)'
+Eliminated object (0x3,0x4) of size 5 bytes from 'XCP2005LIB.dlb[CDSP_LP0I_handler.doj](seg_dmda)'
+Eliminated object (0x21,0x22) of size 5 bytes from 'XCP2005LIB.dlb[CDSP_LP0I_handler.doj](seg_dmda)'
+Eliminated object (___lib_setup_runtime_heap, .___lib_setup_runtime_heap.end) of size 18 bytes from 'libc161.dlb[set_c.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_callib.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[error.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[error.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[helpers_check_signature.doj](seg_dmda)'
+Eliminated object (_helpers_check_signature__FRC46reg_readonly_string__tm__19_XCUiL_1_0XCUiL_1_8PCc, ._helpers_check_signature__FRC46reg_readonly_string__tm__19_XCUiL_1_0XCUiL_1_8PCc.end) of size 120 bytes from 'XCP2005LIB.dlb[helpers_check_signature.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[atomic.doj](seg_dmda)'
+Eliminated object (MSC_0x10, MSC_0x10+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x20, MSC_0x20+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x30, MSC_0x30+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x40, MSC_0x40+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x50, MSC_0x50+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x60, MSC_0x60+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x70, MSC_0x70+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x80, MSC_0x80+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0x90, MSC_0x90+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0xA0, MSC_0xA0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0xB0, MSC_0xB0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0xC0, MSC_0xC0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0xD0, MSC_0xD0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0xE0, MSC_0xE0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (MSC_0xF0, MSC_0xF0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[MSC.doj](seg_FPGA_block_MSC)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_base.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[adda_base.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_init.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[adda_init.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[delay.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_dmda)'
+Eliminated object (_UpdateCRC__Q2_8DataLink11XCSDataLinkFRUiUi, ._UpdateCRC__Q2_8DataLink11XCSDataLinkFRUiUi.end) of size 222 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)'
+Eliminated object (_Wait__Q2_8DataLink11XCSDataLinkFv, ._Wait__Q2_8DataLink11XCSDataLinkFv.end) of size 60 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)'
+Eliminated object (_StateWaitForNOP__Q2_8DataLink11XCSDataLinkFv, ._StateWaitForNOP__Q2_8DataLink11XCSDataLinkFv.end) of size 108 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)'
+Eliminated object (_Close__Q2_8DataLink11XCSDataLinkFv, ._Close__Q2_8DataLink11XCSDataLinkFv.end) of size 36 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)'
+Eliminated object (_StateIdle__Q2_8DataLink11XCSDataLinkFv, ._StateIdle__Q2_8DataLink11XCSDataLinkFv.end) of size 594 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)'
+Eliminated object (_StateRead__Q2_8DataLink11XCSDataLinkFv, ._StateRead__Q2_8DataLink11XCSDataLinkFv.end) of size 600 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)'
+Eliminated object (_StateWrite__Q2_8DataLink11XCSDataLinkFv, ._StateWrite__Q2_8DataLink11XCSDataLinkFv.end) of size 492 bytes from '..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb[XCSDataLink.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[irq_add_listener.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[irq_add_listener.vdsp.doj](seg_dmda)'
+Eliminated object (0x1d,0x1e) of size 5 bytes from 'XCP2005LIB.dlb[irq_add_listener.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[LED.doj](seg_dmda)'
+Eliminated object (_LED_ERR_off__Fv, ._LED_ERR_off__Fv.end) of size 42 bytes from 'XCP2005LIB.dlb[LED.doj](seg_pmco)'
+Eliminated object (_LED_toggle__FUi, ._LED_toggle__FUi.end) of size 54 bytes from 'XCP2005LIB.dlb[LED.doj](seg_pmco)'
+Eliminated object (_LED_set_all__FUi, ._LED_set_all__FUi.end) of size 84 bytes from 'XCP2005LIB.dlb[LED.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_irq_ack.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[adda_irq_ack.vdsp.doj](seg_dmda)'
+Eliminated object (0x19,0x1a) of size 5 bytes from 'XCP2005LIB.dlb[adda_irq_ack.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[ad_convert.vdsp.doj](seg_dmda)'
+Eliminated object (_extract_signed__tm__21_XCUiL_2_16XCUiL_2_30__FUi_i, ._extract_signed__tm__21_XCUiL_2_16XCUiL_2_30__FUi_i.end) of size 30 bytes from 'XCP2005LIB.dlb[ad_convert.vdsp.doj](seg_pmco)'
+Eliminated object (_extract_signed__tm__20_XCUiL_1_0XCUiL_2_14__FUi_i, ._extract_signed__tm__20_XCUiL_1_0XCUiL_2_14__FUi_i.end) of size 30 bytes from 'XCP2005LIB.dlb[ad_convert.vdsp.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[AN.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[AN.doj](seg_dmda)'
+Eliminated object (B_0x10, B_0x10+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x20, B_0x20+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x30, B_0x30+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x40, B_0x40+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x50, B_0x50+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x60, B_0x60+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x70, B_0x70+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x80, B_0x80+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0x90, B_0x90+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0xA0, B_0xA0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0xB0, B_0xB0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0xC0, B_0xC0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0xD0, B_0xD0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0xE0, B_0xE0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (B_0xF0, B_0xF0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_B.doj](seg_FPGA_block_B)'
+Eliminated object (A_0x10, A_0x10+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x20, A_0x20+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x30, A_0x30+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x40, A_0x40+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x50, A_0x50+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x60, A_0x60+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x70, A_0x70+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x80, A_0x80+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0x90, A_0x90+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0xA0, A_0xA0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0xB0, A_0xB0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0xC0, A_0xC0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0xD0, A_0xD0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0xE0, A_0xE0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (A_0xF0, A_0xF0+0x10) of size 80 bytes from 'XCP2005LIB.dlb[BLOCK_A.doj](seg_FPGA_block_A)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_dmda)'
+Eliminated object (_display_cursor__FbT1, ._display_cursor__FbT1.end) of size 84 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_display_putchar__Fc, ._display_putchar__Fc.end) of size 36 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_display_move__Fb, ._display_move__Fb.end) of size 66 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_display_gotohome__Fv, ._display_gotohome__Fv.end) of size 42 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_display_generate_char__FUiPc, ._display_generate_char__FUiPc.end) of size 204 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_display_full__Fv, ._display_full__Fv.end) of size 42 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_display_putuint__FUi, ._display_putuint__FUi.end) of size 144 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_key_pressed__F4keyT, ._key_pressed__F4keyT.end) of size 48 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_key_reset_trig__Fv, ._key_reset_trig__Fv.end) of size 42 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_key_trig__F5edgeT4keyT, ._key_trig__F5edgeT4keyT.end) of size 96 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_incenc_read__FPi, ._incenc_read__FPi.end) of size 108 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_incenc_write__Fi, ._incenc_write__Fi.end) of size 72 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_incenc_set_shftinc__FUi, ._incenc_set_shftinc__FUi.end) of size 66 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_incenc_set_autores__Fb, ._incenc_set_autores__Fb.end) of size 96 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_incenc_set_autoshft__Fb, ._incenc_set_autoshft__Fb.end) of size 96 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (_shftled_set__Fb, ._shftled_set__Fb.end) of size 90 bytes from 'XCP2005LIB.dlb[ComUnit.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_init.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[write_protect_off.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_config_lsiad.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[adda_config_lsiad.vdsp.doj](seg_dmda)'
+Eliminated object (0x19,0x1a) of size 5 bytes from 'XCP2005LIB.dlb[adda_config_lsiad.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_irq_configure.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[adda_irq_configure.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[irq_set_handler.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[msc_clear_shutdown.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[timer0_stop.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[timer0_init.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[timer0_start.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[write_protect_on.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[I2C_init.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[AixScope_init.doj](seg_dmda)'
+Eliminated object (_LP0, _LP0+0x1) of size 5 bytes from 'XCP2005LIB.dlb[AixScope_init.doj](seg_dmda)'
+Eliminated object (0x13,0x14) of size 5 bytes from 'XCP2005LIB.dlb[AixScope_init.doj](seg_dmda)'
+Eliminated object (0x31,0x32) of size 5 bytes from 'XCP2005LIB.dlb[AixScope_init.doj](seg_dmda)'
+Eliminated object (0x25,0x26) of size 5 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_SRAM)'
+Eliminated object (_old_ready, ._old_ready.end) of size 5 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_SRAM)'
+Eliminated object (_old_ack, ._old_ack.end) of size 5 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_SRAM)'
+Eliminated object (_ready, ._ready.end) of size 5 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_SRAM)'
+Eliminated object (_ack, ._ack.end) of size 5 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_SRAM)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_dmda)'
+Eliminated object (___as__10CalibBlockFRC10CalibBlock, .___as__10CalibBlockFRC10CalibBlock.end) of size 84 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_pmco)'
+Eliminated object (___as__21HandshakingCalibBlockFRC10CalibBlock, .___as__21HandshakingCalibBlockFRC10CalibBlock.end) of size 294 bytes from 'XCP2005LIB.dlb[CalibBlock.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[button_pressed.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_putlinefeed.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_putstring.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_putchar.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_putuint_dec.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_external_calibration.vdsp.doj](seg_dmda)'
+Eliminated object (_adda_external_calibration_applied, ._adda_external_calibration_applied.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_external_calibration.vdsp.doj](seg_dmda)'
+Eliminated object (_adda_special_aixcontrol_hash, ._adda_special_aixcontrol_hash.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_external_calibration.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_gain.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_offs.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[adda_converter.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[adda_converter.vdsp.doj](seg_dmda)'
+Eliminated object (0x39,0x3a) of size 5 bytes from 'XCP2005LIB.dlb[adda_converter.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[AixScope_update.doj](seg_dmda)'
+Eliminated object (_LP0, _LP0+0x1) of size 5 bytes from 'XCP2005LIB.dlb[AixScope_update.doj](seg_dmda)'
+Eliminated object (0x21,0x22) of size 5 bytes from 'XCP2005LIB.dlb[AixScope_update.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[ic_config.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[irq_rewrite_ic_table.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[irq_rewrite_ic_table.vdsp.doj](seg_dmda)'
+Eliminated object (0x29,0x2a) of size 5 bytes from 'XCP2005LIB.dlb[irq_rewrite_ic_table.vdsp.doj](seg_dmda)'
+Eliminated object (__Geterrno, .__Geterrno.end) of size 30 bytes from 'libc161.dlb[errno.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_timeout.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_clear_getbuffer.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_set_cmdhandler.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[IRQ_set_func.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[IRQ_disable.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[timer0_set_irqfunc.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[timer0_set_periode.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[irq_functions.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[IRQ_enable.vdsp.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[IRQ_enable.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[I2C_timeout.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[I2C_tryinterval.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[I2C_hold_time_fast.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[I2C_hold_time_standard.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[I2C_delay_time.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[I2C_ready.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_dmda)'
+Eliminated object (.SWITCH.153, .SWITCH.153.end) of size 20 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_dmda)'
+Eliminated object (_setBaudrate__8TerminalFUi, ._setBaudrate__8TerminalFUi.end) of size 54 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (___ct__8TerminalFc, .___ct__8TerminalFc.end) of size 90 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (___ls__8TerminalFc, .___ls__8TerminalFc.end) of size 66 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (___ls__8TerminalFUi, .___ls__8TerminalFUi.end) of size 66 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (___ls__8TerminalFi, .___ls__8TerminalFi.end) of size 66 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (___ls__8TerminalFf, .___ls__8TerminalFf.end) of size 78 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (_get_char__8TerminalFRc, ._get_char__8TerminalFRc.end) of size 54 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (___rs__8TerminalFRc, .___rs__8TerminalFRc.end) of size 96 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (_put_pstring__8TerminalFPCUiUi, ._put_pstring__8TerminalFPCUiUi.end) of size 372 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (_put_pstring_hex__8TerminalFPCUiUi, ._put_pstring_hex__8TerminalFPCUiUi.end) of size 396 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (_get_pstring__8TerminalFPUiUi, ._get_pstring__8TerminalFPUiUi.end) of size 654 bytes from 'XCP2005LIB.dlb[Terminal.vdsp.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[ic0_shadow.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[irq_transfer_ic0.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_buffer.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_buffer_pointer.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_cmdhandler_func.vdsp.doj](seg_dmda)'
+Eliminated object (_interruptss, ._interruptss.end) of size 18 bytes from 'libc161.dlb[interrup.doj](seg_pmco)'
+Eliminated object (_interruptcb, ._interruptcb.end) of size 18 bytes from 'libc161.dlb[interrup.doj](seg_pmco)'
+Eliminated object (_interrupts, ._interrupts.end) of size 18 bytes from 'libc161.dlb[interrup.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[timer0_set_periode_cycles.vdsp.doj](seg_dmda)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_set_bautrate.vdsp.doj](seg_dmda)'
+Eliminated object (_serial_set_bautrate__FUi, ._serial_set_bautrate__FUi.end) of size 36 bytes from 'XCP2005LIB.dlb[serial_set_bautrate.vdsp.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_putint_dec.doj](seg_dmda)'
+Eliminated object (_serial_putint_dec__Fi, ._serial_putint_dec__Fi.end) of size 114 bytes from 'XCP2005LIB.dlb[serial_putint_dec.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_putfloat_dec.doj](seg_dmda)'
+Eliminated object (0x1,0x2) of size 5 bytes from 'XCP2005LIB.dlb[serial_putfloat_dec.doj](seg_dmda)'
+Eliminated object (.sovrfl.0, .sovrfl.0.end) of size 30 bytes from 'XCP2005LIB.dlb[serial_putfloat_dec.doj](seg_dmda)'
+Eliminated object (_serial_putfloat_dec__FfUic, ._serial_putfloat_dec__FfUic.end) of size 516 bytes from 'XCP2005LIB.dlb[serial_putfloat_dec.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_getchar.vdsp.doj](seg_dmda)'
+Eliminated object (_serial_getchar__FPc, ._serial_getchar__FPc.end) of size 252 bytes from 'XCP2005LIB.dlb[serial_getchar.vdsp.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'XCP2005LIB.dlb[serial_putchar_hex.doj](seg_dmda)'
+Eliminated object (_serial_putchar_hex__Fc, ._serial_putchar_hex__Fc.end) of size 228 bytes from 'XCP2005LIB.dlb[serial_putchar_hex.doj](seg_pmco)'
+Eliminated object (.epcdata, .epcdata.end) of size 5 bytes from 'libcpp.dlb[memzero.doj](seg_dmda)'
+Eliminated object (___memzero, .___memzero.end) of size 60 bytes from 'libcpp.dlb[memzero.doj](seg_pmco)'
+Eliminated object (___lib_ss_int_cntrl, .___lib_ss_int_cntrl.end) of size 144 bytes from 'libc161.dlb[int_cnss.doj](seg_pmco)'
+Eliminated object (___lib_cb_int_cntrl, .___lib_cb_int_cntrl.end) of size 2178 bytes from 'libc161.dlb[int_cncbl.doj](seg_pmco)'
+Eliminated object (___lib_super_int_cntrl, .___lib_super_int_cntrl.end) of size 180 bytes from 'libc161.dlb[int_cnsl.doj](seg_pmco)'
+Eliminated object (a1_values, a1_values+0x12) of size 90 bytes from 'libc161.dlb[powf.doj](seg_dmda)'
+Eliminated object (a2_values, a2_values+0x9) of size 45 bytes from 'libc161.dlb[powf.doj](seg_dmda)'
+Eliminated object (power_array, power_array+0xa) of size 50 bytes from 'libc161.dlb[powf.doj](seg_dmda)'
+Eliminated object (_powf, ._powf.end) of size 1002 bytes from 'libc161.dlb[powf.doj](seg_pmco)'
+]]></EXTENDED_INFO>
+</MSG>
+</DOCUMENT>

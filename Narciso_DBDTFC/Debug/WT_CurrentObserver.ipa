@@ -1,0 +1,357 @@
+IPAF version 1
+Ssef <
+G_get_I_dq_f_hat_kp1__15CurrentObserverFv sid<
+>>Sptr <
+G_get_I_dq_f_hat_kp1__15CurrentObserverFv ptr<
+11_|
+10_|3_
+9_|
+8_|
+7_|
+6_|
+5_|
+4_|
+3_|
+2_|
+1_|
+0_|
+>>Smust <
+G_get_I_dq_f_hat_kp1__15CurrentObserverFv ptb<
+>>Scnal <
+_get_I_dq_f_hat_kp1__15CurrentObserverFv <
+_get_I_dq_f_hat_kp1__15CurrentObserverFv:1 ?
+>>Sprpc <
+_get_I_dq_f_hat_kp1__15CurrentObserverFv <
+>>Ssef <
+G_run__15CurrentObserverFv sid<
+DG_sqrtf 
+13_
+14_
+>>Sptr <
+G_run__15CurrentObserverFv ptr<
+50_|
+49_|
+48_|
+47_|
+46_|
+45_|
+44_|
+43_|
+42_|
+41_|
+40_|1_
+39_|
+38_|
+37_|
+36_|35_
+35_|
+34_|
+33_|
+32_|
+31_|
+30_|
+29_|
+28_|
+27_|
+26_|
+25_|
+24_|
+23_|
+22_|
+21_|
+20_|
+19_|
+18_|
+17_|
+16_|
+15_|
+14_|48_47_46_45_44_43_42_41_40_39_38_37_36_35_34_33_32_31_30_29_28_27_26_25_24_23_22_21_20_19_18_17_16_15_1_10_
+13_|50_49_48_47_46_45_44_43_42_41_40_39_38_37_35_1_10_34_33_32_31_30_29_28_27_26_25_24_23_22_21_20_19_18_17_16_15_
+12_|
+11_|
+10_|36_
+9_|
+8_|
+7_|
+6_|
+5_|
+4_|
+3_|
+2_|
+1_2_3_6_7_11_|50_49_
+0_|
+>>Smust <
+G_run__15CurrentObserverFv ptb<
+G_sqrtf 
+>>Scnal <
+_run__15CurrentObserverFv <
+_run__15CurrentObserverFv:1 [4_2_?
+_sqrtf:r ?
+_run__15CurrentObserverFv:1 @_CO 1_
+>>Sprpc <
+_run__15CurrentObserverFv <
+_sqrtf:1 n
+>>Ssef <
+G___ct__15CurrentObserverFv sid<
+DG_expf 
+16_
+17_
+>>Sptr <
+G___ct__15CurrentObserverFv ptr<
+54_|
+53_|
+52_|
+51_|
+50_|
+49_|
+48_|
+47_|
+46_|
+45_|
+44_|1_
+43_|
+42_|
+41_|
+40_|18_
+39_|40_
+38_|
+37_|
+36_|
+35_|
+34_|
+33_|
+32_|
+31_|
+30_|
+29_|
+28_|
+27_|
+26_|
+25_|
+24_|
+23_|
+22_|
+21_|
+20_|
+19_|
+18_|
+17_|52_51_50_49_48_47_46_45_44_43_42_41_40_39_38_37_36_35_34_33_32_31_30_29_28_27_26_25_24_23_22_21_20_19_18_1_
+16_|54_53_52_51_50_49_48_47_46_45_44_43_42_41_18_39_38_37_36_35_34_33_32_31_30_29_28_27_26_25_24_23_22_21_20_19_1_
+15_|10_
+14_|
+13_|
+12_|
+11_|
+10_|18_
+9_|
+8_|
+7_|
+6_|
+5_|
+4_|
+3_|
+2_|
+1_2_3_6_7_11_|54_53_
+0_|
+>>Smust <
+G___ct__15CurrentObserverFv ptb<
+G_expf 
+>>Scnal <
+___ct__15CurrentObserverFv <
+_expf:r ?
+___ct__15CurrentObserverFv:1 @_CO 1_
+>>Sprpc <
+___ct__15CurrentObserverFv <
+_expf:1 n
+>>Ssef <
+G_clear__15CurrentObserverFv sid<
+>>Sptr <
+G_clear__15CurrentObserverFv ptr<
+7_|
+6_|
+5_|
+4_|
+3_4_|
+2_|
+1_|
+0_|
+>>Smust <
+G_clear__15CurrentObserverFv ptb<
+>>Scnal <
+_clear__15CurrentObserverFv <
+_clear__15CurrentObserverFv:1 @_CO 1_
+>>Sprpc <
+_clear__15CurrentObserverFv <
+>>Ssef <
+G_update__15CurrentObserverFRC10ComplexVarT1 sid<
+DG_run__15CurrentObserverFv 
+23_
+24_
+>>Sptr <
+G_update__15CurrentObserverFRC10ComplexVarT1 ptr<
+59_|
+58_|
+57_|
+56_|
+55_|
+54_|
+53_|
+52_|
+51_|
+50_|
+49_|3_
+48_|
+47_|
+46_|
+45_|
+44_|
+43_|
+42_|
+41_|
+40_|
+39_|
+38_|
+37_|
+36_|
+35_|
+34_|
+33_|
+32_|
+31_|
+30_|
+29_|
+28_|
+27_|
+26_|
+25_|
+24_|57_56_55_54_53_52_51_50_49_48_47_46_45_44_43_42_41_40_39_38_37_36_35_34_33_32_31_30_29_28_27_26_25_3_2_11_
+23_|59_58_57_56_55_54_53_52_51_50_49_48_47_46_45_3_2_20_18_44_43_42_41_40_39_38_37_36_35_34_33_32_31_30_29_28_27_26_25_
+22_|
+21_|
+20_|
+19_|
+18_|
+17_|
+16_|
+15_|
+14_|
+13_|
+12_|
+11_|45_
+10_|
+9_|
+8_|
+7_|
+6_10_|
+5_9_|
+4_|
+3_4_7_8_22_|59_58_
+2_|11_
+1_|
+0_|
+>>Smust <
+G_update__15CurrentObserverFRC10ComplexVarT1 ptb<
+G_run__15CurrentObserverFv 
+>>Scnal <
+_update__15CurrentObserverFRC10ComplexVarT1 <
+_update__15CurrentObserverFRC10ComplexVarT1:3 [0_2_?
+_update__15CurrentObserverFRC10ComplexVarT1:2 [0_2_?
+_update__15CurrentObserverFRC10ComplexVarT1:1 @_CO 1_
+_update__15CurrentObserverFRC10ComplexVarT1:2 ?
+_update__15CurrentObserverFRC10ComplexVarT1:3 ?
+>>Sprpc <
+_update__15CurrentObserverFRC10ComplexVarT1 <
+_run__15CurrentObserverFv:1 n
+>>Ssef <
+G_get_E_norm_q_est__15CurrentObserverFv sid<
+>>Sptr <
+G_get_E_norm_q_est__15CurrentObserverFv ptr<
+11_|
+10_|
+9_|
+8_|
+7_|
+6_8_|
+5_7_|
+4_|
+3_4_10_11_|
+2_|
+1_|
+0_|
+>>Smust <
+G_get_E_norm_q_est__15CurrentObserverFv ptb<
+>>Scnal <
+_get_E_norm_q_est__15CurrentObserverFv <
+_get_E_norm_q_est__15CurrentObserverFv:1 @_CO 1_
+>>Sprpc <
+_get_E_norm_q_est__15CurrentObserverFv <
+>>Ssef <
+G_get_E_norm_d_est__15CurrentObserverFv sid<
+>>Sptr <
+G_get_E_norm_d_est__15CurrentObserverFv ptr<
+11_|
+10_|
+9_|
+8_|
+7_|
+6_8_|
+5_7_|
+4_|
+3_4_10_11_|
+2_|
+1_|
+0_|
+>>Smust <
+G_get_E_norm_d_est__15CurrentObserverFv ptb<
+>>Scnal <
+_get_E_norm_d_est__15CurrentObserverFv <
+_get_E_norm_d_est__15CurrentObserverFv:1 @_CO 1_
+>>Sprpc <
+_get_E_norm_d_est__15CurrentObserverFv <
+>>Ssef <
+G_get_E_q_est__15CurrentObserverFv sid<
+>>Sptr <
+G_get_E_q_est__15CurrentObserverFv ptr<
+11_|
+10_|3_
+9_|
+8_|
+7_|
+6_|
+5_|
+4_|
+3_|
+2_|
+1_|
+0_|
+>>Smust <
+G_get_E_q_est__15CurrentObserverFv ptb<
+>>Scnal <
+_get_E_q_est__15CurrentObserverFv <
+_get_E_q_est__15CurrentObserverFv:1 ?
+>>Sprpc <
+_get_E_q_est__15CurrentObserverFv <
+>>Ssef <
+G_get_E_d_est__15CurrentObserverFv sid<
+>>Sptr <
+G_get_E_d_est__15CurrentObserverFv ptr<
+11_|
+10_|3_
+9_|
+8_|
+7_|
+6_|
+5_|
+4_|
+3_|
+2_|
+1_|
+0_|
+>>Smust <
+G_get_E_d_est__15CurrentObserverFv ptb<
+>>Scnal <
+_get_E_d_est__15CurrentObserverFv <
+_get_E_d_est__15CurrentObserverFv:1 ?
+>>Sprpc <
+_get_E_d_est__15CurrentObserverFv <
+>>

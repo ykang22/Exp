@@ -1,0 +1,324 @@
+// $Id: xcp2000.ldf 87 2008-01-04 18:56:18Z adler $
+ARCHITECTURE(ADSP-21161)
+
+#ifndef __NO_STD_LIB
+	#ifdef __swfa
+		SEARCH_DIR( $ADI_DSP/211xx/lib/swfa )
+	#else
+		SEARCH_DIR( $ADI_DSP/211xx/lib )
+	#endif
+#endif
+
+// The I/O library provides support for printing hexadecimal constants
+// using the "%a" conversion specifier, and for registering alternatives to
+// the default device driver that is supported by the VisualDSP++ simulator
+// and EZ-KIT Lite systems. Those applications that do not require this
+// functionality may define the macro __LIBIO_LITE which will select an
+// alternative I/O library and lead to reduced code occupancy.
+#define __LIBIO_LITE
+
+#ifdef __LIBIO_LITE
+	#define LIBIO libio_lite.dlb
+#else
+	#define LIBIO libio.dlb
+#endif
+
+#if !defined XCP2000
+	#error XCP2000 assumed!
+#endif
+
+#ifdef __ADI_LIBEH__
+	$LIBRARIES = libeh.dlb, libc161.dlb, LIBIO, libdsp160.dlb, libcppeh.dlb, libcpprteh.dlb, XCP2000LIB.dlb;
+#else
+	$LIBRARIES = libc161.dlb, LIBIO, libdsp160.dlb, libcpp.dlb, libeh.dlb, libcpprt.dlb, XCP2000LIB.dlb;
+#endif
+
+$OBJECTS = CDSP_Runtime_Header.doj, $COMMAND_LINE_OBJECTS;
+
+MEMORY
+{
+    seg_rth            { TYPE(PM RAM) START(0x00040000) END(0x000400ff) WIDTH(48) }
+    seg_init           { TYPE(PM RAM) START(0x00040100) END(0x0004012f) WIDTH(48) }
+    seg_int_code       { TYPE(PM RAM) START(0x00040130) END(0x0004015f) WIDTH(48) }
+    seg_pmco           { TYPE(PM RAM) START(0x00040160) END(0x000426A9) WIDTH(48) }
+    seg_pmda           { TYPE(PM RAM) START(0x00043A00) END(0x00043fff) WIDTH(32) }
+
+	seg_CommBuffers    { TYPE(DM RAM) START(0x00050000) END(0x000500ff) WIDTH(32) }
+	
+    seg_DataLink_Down  { TYPE(DM RAM) START(0x00050100) END(0x00050107) WIDTH(32) }
+	seg_DataLink_Up    { TYPE(DM RAM) START(0x00050108) END(0x0005010f) WIDTH(32) }
+	
+    seg_ctdm           { TYPE(DM RAM) START(0x00050110) END(0x000501ff) WIDTH(32) }
+	#ifdef IDDE_ARGS
+	#define ARGV_START 0x50200
+		seg_argv       { TYPE(DM RAM) START(0x00050200) END(0x000502ff) WIDTH(32) }
+		seg_dmda       { TYPE(DM RAM) START(0x00050300) END(0x00050fff) WIDTH(32) }
+	#else
+		seg_dmda       { TYPE(DM RAM) START(0x00050200) END(0x00050fff) WIDTH(32) }
+	#endif
+    seg_dmco           { TYPE(PM RAM) START(0x00050AAB) END(0x00051553) WIDTH(48) }
+	seg_heap           { TYPE(DM RAM) START(0x00052000) END(0x00052fff) WIDTH(32) }
+	seg_stak           { TYPE(DM RAM) START(0x00053000) END(0x00053fff) WIDTH(32) }
+
+	seg_FPGA_block_MSC      { TYPE(DM RAM) START(0x00800000) END(0x008000FF) WIDTH(32) } // Main System Controler
+	seg_FPGA_block_A        { TYPE(DM RAM) START(0x00800100) END(0x008001FF) WIDTH(32) } // Digital
+	seg_FPGA_block_B        { TYPE(DM RAM) START(0x00800200) END(0x008002FF) WIDTH(32) } // Digital
+	seg_FPGA_block_C        { TYPE(DM RAM) START(0x00801800) END(0x008018FF) WIDTH(32) } // Digital
+	seg_FPGA_block_D        { TYPE(DM RAM) START(0x00800300) END(0x008003FF) WIDTH(32) } // Digital
+	seg_FPGA_block_E        { TYPE(DM RAM) START(0x00801900) END(0x008019FF) WIDTH(32) } // Globals
+	seg_FPGA_block_F        { TYPE(DM RAM) START(0x00801A00) END(0x00801AFF) WIDTH(32) } // FPGA-IO
+	seg_FPGA_block_G        { TYPE(DM RAM) START(0x00800700) END(0x008007FF) WIDTH(32) } // RS232
+	seg_FPGA_block_H        { TYPE(DM RAM) START(0x00800400) END(0x008004FF) WIDTH(32) } // Display
+	seg_FPGA_block_I        { TYPE(DM RAM) START(0x00801B00) END(0x00801BFF) WIDTH(32) } // internal
+	seg_FPGA_block_J        { TYPE(DM RAM) START(0x00801C00) END(0x00801CFF) WIDTH(32) } // internal
+	seg_FPGA_block_K        { TYPE(DM RAM) START(0x00801D00) END(0x00801DFF) WIDTH(32) } // internal
+	seg_FPGA_block_L        { TYPE(DM RAM) START(0x00800500) END(0x008005FF) WIDTH(32) } // Analog
+	seg_FPGA_block_M        { TYPE(DM RAM) START(0x00801E00) END(0x00801EFF) WIDTH(32) } // Analog
+	seg_FPGA_block_N        { TYPE(DM RAM) START(0x00800600) END(0x008006FF) WIDTH(32) } // Analog
+	seg_FPGA_block_O        { TYPE(DM RAM) START(0x00801F00) END(0x00801FFF) WIDTH(32) } // Analog
+
+	seg_FLASH     	        { TYPE(DM RAM) START(0x04000000) END(0x04FFFFFF) WIDTH(32) } // Flash Memory Segment in Bank 2
+
+	seg_SRAM_calib			{ TYPE(DM RAM) START(0x08000000) END(0x08000043) WIDTH(32) }  	// SRAM  Memory Segment in Bank 0 - Calibration Part
+	seg_SRAM_user_scaling	{ TYPE(DM RAM) START(0x08000044) END(0x08000085) WIDTH(32) }  	// SRAM  Memory Segment in Bank 0 - Calibration Part
+    seg_SRAM      			{ TYPE(DM RAM) START(0x08000086) END(0x0803FFFF) WIDTH(32) }  	// SRAM  Memory Segment in Bank 0
+
+	seg_SDRAM	            { TYPE(DM RAM) START(0x0C000000) END(0x0CFFFFFF) WIDTH(32) }	// SDRAM Memory Segment full Size
+}
+
+
+
+PROCESSOR p0
+{
+	#ifdef IDDE_ARGS
+	    RESOLVE(___argv_string, ARGV_START)
+	#endif
+    KEEP( _main,___ctor_NULL_marker,___lib_end_of_heap_descriptions )
+
+    LINK_AGAINST( $COMMAND_LINE_LINK_AGAINST)
+    OUTPUT( $COMMAND_LINE_OUTPUT_FILE )
+
+    SECTIONS
+    {
+		// .text output section
+        seg_rth
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_rth) $LIBRARIES(seg_rth))
+        } >seg_rth
+
+        seg_init
+        {
+            ldf_seginit_space = . ;
+            INPUT_SECTIONS( $OBJECTS(seg_init) $LIBRARIES(seg_init))
+        } >seg_init
+
+        seg_int_code
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_int_code) $LIBRARIES(seg_int_code))
+        } >seg_int_code
+
+        seg_pmco
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_pmco) $LIBRARIES(seg_pmco))
+        } >seg_pmco
+        
+        seg_dmco
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_dmco) $LIBRARIES(seg_dmco))
+        } >seg_dmco
+
+        seg_pmda
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_pmda) $LIBRARIES(seg_pmda))
+        } >seg_pmda
+
+        seg_CommBuffers
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_CommBuffers) $LIBRARIES(seg_CommBuffers))
+        } > seg_CommBuffers
+        
+        seg_DataLink_Up
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_DataLink_Up) $LIBRARIES(seg_DataLink_Up))
+        } > seg_DataLink_Up
+        
+        seg_DataLink_Down
+        {
+            INPUT_SECTIONS( $OBJECTS(seg_DataLink_Down) $LIBRARIES(seg_DataLink_Down))
+        } > seg_DataLink_Down
+
+        seg_ctdm
+        {
+            __ctors = .;    /* points to the start of the section */
+            INPUT_SECTIONS( $OBJECTS(seg_ctdm) $LIBRARIES(seg_ctdm))
+            INPUT_SECTIONS( $OBJECTS(seg_ctdml) $LIBRARIES(seg_ctdml))
+        } > seg_ctdm
+
+        .bss ZERO_INIT
+        {
+           INPUT_SECTIONS( $OBJECTS(.bss) $LIBRARIES(.bss))
+        } > seg_dmda
+
+        seg_vtbl
+        {
+        	INPUT_SECTIONS( $OBJECTS(seg_vtbl) $LIBRARIES(seg_vtbl))
+        } > seg_dmda
+
+        seg_dmda
+        {
+#ifdef DISABLE_CALIBRATIONDATAEXCHANGE
+#warning	Calibration data exchange is DISABLED!
+        	_CalibrationDataExchangeEnabled = 0x00000000;
+#else        	
+			_CalibrationDataExchangeEnabled = 0x00000001;
+#endif
+            INPUT_SECTIONS( $OBJECTS(seg_dmda) $LIBRARIES(seg_dmda))
+        } > seg_dmda
+
+		.gdt
+		{
+		  INPUT_SECTIONS( $OBJECTS(.gdt) $LIBRARIES(.gdt))
+		  INPUT_SECTIONS( $OBJECTS(.gdtl) $LIBRARIES(.gdtl))
+		} > seg_dmda
+	
+		.frt
+		{
+		  INPUT_SECTIONS( $OBJECTS(.frt) $LIBRARIES(.frt))
+		  INPUT_SECTIONS( $OBJECTS(.frtl) $LIBRARIES(.frtl))
+		} > seg_dmda
+	
+		.cht
+		{
+		  INPUT_SECTIONS( $OBJECTS(.cht) $LIBRARIES(.cht))
+		  INPUT_SECTIONS( $OBJECTS(.chtl) $LIBRARIES(.chtl))
+		} > seg_dmda
+	
+		.edt
+		{
+		  INPUT_SECTIONS( $OBJECTS(.edt) $LIBRARIES(.edt))
+		  INPUT_SECTIONS( $OBJECTS(.edtl) $LIBRARIES(.edtl))
+		} > seg_dmda
+
+        stackseg
+        {
+            // allocate a stack for the application
+            ldf_stack_space = .;
+            ldf_stack_length = MEMORY_SIZEOF(seg_stak);
+        } > seg_stak
+
+        heap
+        {
+            // allocate a heap for the application
+            ldf_heap_space = .;
+            ldf_heap_length = MEMORY_SIZEOF(seg_heap);
+            ldf_heap_end = ldf_heap_space + ldf_heap_length - 1;       
+        } > seg_heap
+        
+		seg_FPGA_block_MSC NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_MSC) $LIBRARIES(seg_FPGA_block_MSC))
+		} > seg_FPGA_block_MSC
+
+		seg_FPGA_block_A NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_A) $LIBRARIES(seg_FPGA_block_A))
+		} > seg_FPGA_block_A
+
+		seg_FPGA_block_B NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_B) $LIBRARIES(seg_FPGA_block_B))
+		} > seg_FPGA_block_B
+
+		seg_FPGA_block_C NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_C) $LIBRARIES(seg_FPGA_block_C))
+		} > seg_FPGA_block_C
+
+		seg_FPGA_block_D NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_D) $LIBRARIES(seg_FPGA_block_D))
+		} > seg_FPGA_block_D
+
+		seg_FPGA_block_E NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_E) $LIBRARIES(seg_FPGA_block_E))
+		} > seg_FPGA_block_E
+
+		seg_FPGA_block_F NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_F) $LIBRARIES(seg_FPGA_block_F))
+		} > seg_FPGA_block_F
+
+		seg_FPGA_block_G NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_G) $LIBRARIES(seg_FPGA_block_G))
+		} > seg_FPGA_block_G
+
+		seg_FPGA_block_H NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_H) $LIBRARIES(seg_FPGA_block_H))
+		} > seg_FPGA_block_H
+
+		seg_FPGA_block_I NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_I) $LIBRARIES(seg_FPGA_block_I))
+		} > seg_FPGA_block_I
+
+		seg_FPGA_block_J NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_J) $LIBRARIES(seg_FPGA_block_J))
+		} > seg_FPGA_block_J
+
+		seg_FPGA_block_K NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_K) $LIBRARIES(seg_FPGA_block_K))
+		} > seg_FPGA_block_K
+
+		seg_FPGA_block_L NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_L) $LIBRARIES(seg_FPGA_block_L))
+		} > seg_FPGA_block_L
+
+		seg_FPGA_block_M NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_M) $LIBRARIES(seg_FPGA_block_M))
+		} > seg_FPGA_block_M
+
+		seg_FPGA_block_N NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_N) $LIBRARIES(seg_FPGA_block_N))
+		} > seg_FPGA_block_N
+
+		seg_FPGA_block_O NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FPGA_block_O) $LIBRARIES(seg_FPGA_block_O))
+		} > seg_FPGA_block_O
+
+		seg_FLASH NO_INIT
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_FLASH) $LIBRARIES(seg_FLASH))
+		} > seg_FLASH
+		
+		seg_SRAM_calib
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_SRAM_calib) $LIBRARIES(seg_SRAM_calib))
+		} > seg_SRAM_calib
+
+		seg_SRAM_user_scaling
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_SRAM_user_scaling) $LIBRARIES(seg_SRAM_user_scaling))
+		} > seg_SRAM_user_scaling
+
+		seg_SRAM
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_SRAM) $LIBRARIES(seg_SRAM))
+		} > seg_SRAM
+
+		seg_SDRAM
+		{
+			INPUT_SECTIONS( $OBJECTS(seg_SDRAM) $LIBRARIES(seg_SRAM))
+		} > seg_SDRAM
+				
+    }
+}
+

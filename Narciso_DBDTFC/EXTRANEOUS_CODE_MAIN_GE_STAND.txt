@@ -1,0 +1,2011 @@
+	
+
+	#ifdef _TSHAFT_OBSR_1
+		theta_err_2 = theta - theta_hat_k_2; 		// Calc error of observer
+	
+		// Wrap Error due to effects of encoder wrapping
+		if(theta_err_2 > pi)
+			theta_err_2 -=two_pi;
+		if(theta_err_2 < -pi)
+			theta_err_2 +=two_pi;
+		
+		// Luenberger Observer
+		t_cff_obsr_2 = tem_star_2;  //only have information about the test machine torque (emulated load)
+	
+		theta_err_accum_2 = theta_err_accum_2+t_obsr_1*theta_err_2;				// Accumulate error for Kiso term
+		torq_obsr_2=(theta_err_accum_2*kiso_2+theta_err_2*kso_2); 				// Torq calculated from Kso and Kiso //Disturbance Torque Estimate
+		
+		// Estimated Acceleration (For Active Interia)
+		omega_dot_kp1_2  = j_drive_hat_inv_2*t_cff_obsr_2;
+		omega_dot_kp1_2 += j_drive_hat_inv_2*theta_err_accum_2*kiso_2;
+		omega_dot_kp1_2 += j_drive_hat_inv_2*theta_err_2*kso_2;
+		// Provide filtered estimate to reduce noise for dyno application
+		omega_dot_filt_kp1_2 = omega_dot_filt_kp1_2*0.99f+omega_dot_kp1_2*0.01f;
+	
+		// Sum up contributions to Omega Left
+		omega_l_hat_kp1_2  = omega_l_hat_k_2;
+		omega_l_hat_kp1_2 += t_obsr_1*j_drive_hat_inv_2*t_cff_obsr_2;
+		omega_l_hat_kp1_2 += t_obsr_1*j_drive_hat_inv_2*theta_err_accum_2*kiso_2;
+		omega_l_hat_kp1_2 += t_obsr_1*j_drive_hat_inv_2*theta_err_2*kso_2;
+	
+		// Sum up Omega Right
+		omega_r_hat_kp1_2 = theta_err_2*bo_2*j_p_hat_inv_2+omega_l_hat_kp1_2;
+		omega_bar_hat_kp1_2 = 0.5f*(omega_r_hat_kp1_2+omega_r_hat_k_2);			// Calc omega bar hat (Averageing)
+		theta_hat_kp1_2 = theta_hat_k_2 + t_obsr_1*omega_bar_hat_kp1_2;			// Calc next rotor position
+		theta_hat_kp1_2= fmod(theta_hat_kp1_2,two_pi);							// Wrap theta hat values
+		
+		// Wrap Theta Values
+		if(theta_hat_kp1_2 < 0.0f)
+		theta_hat_kp1_2 += two_pi;
+	
+		// Roll back values for next calculation
+		theta_hat_k_2 = theta_hat_kp1_2;
+		omega_l_hat_k_2 = omega_l_hat_kp1_2;
+		omega_r_hat_k_2 = omega_r_hat_kp1_2;
+	
+		/////////////////////////////////////
+		//cascaded acceleration observer (NOT RIGHT)
+		/////////////////////////////////////////
+		theta_err_2a = theta - theta_hat_k_2a; 		// Calc error of observer
+		//omega_hat_error_2a = omega_l_hat_k_2 - omega_hat_k_2a;
+		omega_hat_error_2a = omega_l_hat_k_1 - omega_hat_k_2a;
+	
+		// Wrap Error due to effects of encoder wrapping
+		if(theta_err_2a > pi)
+			theta_err_2a -=two_pi;
+		if(theta_err_2a < -pi)
+			theta_err_2a +=two_pi;
+		
+		// Luenberger Observer					
+		t_cff_obsr_2a = t_cff_obsr_2; // Torque Command Feedforward	
+		theta_err_accum_2a = theta_err_accum_2a+t_obsr_1*theta_err_2a;				// Accumulate error for Kiso term	
+		torq_obsr_2a=(theta_err_accum_2a*kiso_2a +theta_err_2a*kso_2a +omega_hat_error_2a*bo_2a); // High Bandwidth Disturbance Torque Estimate (shaft torque)
+		
+		// Estimated Acceleration (For Active Interia)
+		omega_dot_kp1_2a  = j_drive_hat_inv_2a*t_cff_obsr_2;
+		omega_dot_kp1_2a += j_drive_hat_inv_2a*theta_err_accum_2a*kiso_2a;
+		omega_dot_kp1_2a += j_drive_hat_inv_2a*theta_err_2a*kso_2a;
+		omega_dot_kp1_2a += j_drive_hat_inv_2a*omega_hat_error_2a*bo_2a;
+
+		// Sum up contributions to Omega
+		omega_hat_kp1_2a  = omega_hat_k_2a;
+		omega_hat_kp1_2a += t_obsr_1*j_drive_hat_inv_2a*t_cff_obsr_2a;
+		omega_hat_kp1_2a += t_obsr_1*j_drive_hat_inv_2a*theta_err_accum_2a*kiso_2a;
+		omega_hat_kp1_2a += t_obsr_1*j_drive_hat_inv_2a*theta_err_2a*kso_2a;
+		omega_hat_kp1_2a += t_obsr_1*j_drive_hat_inv_2a*omega_hat_error_2a*bo_2a;
+	
+		// Sum up theta model
+		omega_bar_hat_kp1_2a = 0.5f*(omega_hat_kp1_2a+omega_hat_k_2a);			// Calc omega bar hat (Averageing)
+		theta_hat_kp1_2a = theta_hat_k_2a + t_obsr_1*omega_bar_hat_kp1_2a;			// Calc next rotor position
+		theta_hat_kp1_2a= fmod(theta_hat_kp1_2a,two_pi);							// Wrap theta hat values
+		
+		// Wrap Theta Values
+		if(theta_hat_kp1_2a < 0.0f)
+		theta_hat_kp1_2a += two_pi;
+	
+		// Roll back values for next calculation
+		theta_hat_k_2a = theta_hat_kp1_2a;
+		omega_hat_k_2a = omega_hat_kp1_2a;
+	#endif //end _TSHAFT_OBSR_1
+	
+
+ #ifdef _DRIVECYCLE
+	    
+	    	if (omega_star_select_2 == 3.0f)
+	    	{	             
+	        	//omega_star_kp1_2 = 50;//omega_star_const_2;                               //Constant speed command for debugging purposes
+   	       	        
+		        if(drivecycle_counter_2 == 2500)
+		        {                                //was 2500           //Changes Speed at 4 Hz...
+	        	
+		        	drivecycle_counter_2 = 0;                                               //Resets the 1 second counter to zero
+		       		drivecycle_array_counter_2++;                                           //Increments the array counter value 	       		
+	       		
+		       		if(drivecycle_array_counter_2 == 900)
+		       		{                                  //Changes out of drive cycle mode when the last value is reached
+		       			//omega_star_select_2 = 2;                                            //Changes to a constant speed reference after the drive cycle is finished
+		       			omega_star_select_2 = 1;											//YS
+		        		omega_star_const_2 = 5;
+		       			drivecycle_array_counter_2 = 0;                                     //Resets the drive cycle array counter to zero.
+		        	}     	
+	       		
+		        }
+	    		        
+		        // Slew the Drivecycle command to maintain smooth operation	        
+		        drivecycle_slew_2 = drivecycle_array_2[drivecycle_array_counter_2 + 1] - drivecycle_array_2[drivecycle_array_counter_2];
+	        	        
+		        //drivecycle_slew_p1_2 = drivecycle_array_2[drivecycle_array_counter_2 + 2] - drivecycle_array_2[drivecycle_array_counter_2 + 1];
+	        	        
+		        omega_star_kp1_2 = drivecycle_array_2[drivecycle_array_counter_2] + drivecycle_slew_2 * 0.0004f * drivecycle_counter_2;	//Sets the speed reference of the drive
+		        drivecycle_omega_2 = omega_star_kp1_2;
+		        drivecycle_omega_dot_2 = drivecycle_slew_2;
+	        	        
+		        if(drivecycle_omega_dot_2 - drivecycle_omega_dot_km1_2 > drivecycle_omega_dot_slew_2){
+		        	drivecycle_omega_dot_2 = drivecycle_omega_dot_km1_2 + drivecycle_omega_dot_slew_2;
+	            }
+		        if(drivecycle_omega_dot_2 - drivecycle_omega_dot_km1_2 < -drivecycle_omega_dot_slew_2){
+		        	drivecycle_omega_dot_2 = drivecycle_omega_dot_km1_2 - drivecycle_omega_dot_slew_2;
+	            }
+            
+	            if(drivecycle_omega_dot_2 > drivecycle_omega_dot_max_2){
+		        	drivecycle_omega_dot_2 = drivecycle_omega_dot_max_2;   
+		        }
+		        if(drivecycle_omega_dot_2 < drivecycle_omega_dot_min_2){
+		        	drivecycle_omega_dot_2 = drivecycle_omega_dot_min_2;   
+		        }
+            
+	            drivecycle_omega_dot_km1_2 = drivecycle_omega_dot_2;
+		        drivecycle_counter_2++;                                                     //Increments the drive cycle 1 second timer 
+	    	}
+	    #endif 
+	    // end _DRIVECYCLE
+	     	    
+	    /*********************************************************************************************************/
+	    // Slew the Speed Command and use T_cff_sfb_2 for acceleration reference   
+	        t_cff_sfb_2 = 0.0f;
+	        		    
+		    if( (omega_star_kp1_2 - omega_star_2) > omega_slew_2 ){
+		    	omega_star_kp1_2 = omega_star_2 + omega_slew_2;
+		    	t_cff_sfb_2 = omega_slew_2 * pwm_frequency * j_p_hat_1;
+		    }
+		    if( (omega_star_kp1_2 - omega_star_2) < -omega_slew_2 ){
+		    	omega_star_kp1_2 = omega_star_2 - omega_slew_2;
+		    	t_cff_sfb_2 = (-omega_slew_2) * pwm_frequency * j_p_hat_1;
+		    }
+
+
+	#ifdef _CRANK_LOADING		//Crank Shaft Torque State Feedback
+	//create emulated frequency angle
+		if (load_select_1 == 2){
+	    
+			theta_c += wc_dt;
+			if(theta_c >= two_pi){
+			    theta_c = theta_c -two_pi;
+			    k_l++;
+			    }
+			if(theta_c < 0){
+			    theta_c = theta_c + two_pi;}	
+	                   
+			theta_idx_act = 72*theta_c/two_pi;
+			theta_idx1 = floor(theta_idx_act);
+			theta_idx2 = ceil(theta_idx_act);
+		
+			if (theta_idx2 >=72){
+			    theta_idx2 = 0;
+			}
+
+
+	
+			m_interp = (t_compressor[theta_idx2] - t_compressor[theta_idx1]);
+			tem_crank = t_compressor[theta_idx1] + m_interp *(theta_idx_act-theta_idx1);	
+	
+	
+		
+		}
+	
+		if (load_select_1 == 3){
+	    
+			tem_crank =  tem_star_sin_amp_1*sinf(two_pi*tem_star_sin_freq_1*cmd_gen_step*dt)+ tem_star_sin_offset_1;
+		
+		
+			cmd_gen_step +=1;
+		
+			if (cmd_gen_step >= tem_star_dyn_nSample){
+			    cmd_gen_step -= tem_star_dyn_nSample;
+			    k_l++;
+			}
+			Lambda_idx_act = 20*cmd_gen_step/tem_star_dyn_nSample;
+			Lambda_idx1 = floor(Lambda_idx_act);
+			Lambda_idx2 = ceil(Lambda_idx_act);
+			if (Lambda_idx2 >=20){
+			    Lambda_idx2 = 0;
+			}
+
+			m_interp = (Lambda_dp[Lambda_idx2] - Lambda_dp[Lambda_idx1]);
+			Lambda_s_DP = Lambda_dp[Lambda_idx1] + m_interp *(Lambda_idx_act-Lambda_idx1);
+		}
+	
+	    /**************************************************************************/
+		/**************************************************************************/
+		/**     								                                 **/
+		/**	               Motion Observer 1 Load & 2 Test 				         **/
+		/**	 	                           					                	 **/
+		/**************************************************************************/
+		/**************************************************************************/
+	
+		// Assign initial value before applying dynamic load 
+		#ifdef _MOTION_SFB_1
+			if (dyn_macro_timer != 0){
+			    tem_star_1 += tem_crank;  //for motion control mode	
+				tem_star_2 = tem_crank;
+				if (lambda_s_star_select_2 == 9.0f){
+				    Lambda_s_DP = Lambda_dp[0];
+				}
+			}
+	
+			// if less than assigned cycles, assign     
+			if (k_l<dyn_load_nCycles){
+			    if (load_select_1 == 2 || load_select_1 == 3){
+			        tem_star_1 += tem_crank;  //for motion control mode	
+					tem_star_2 = tem_crank;
+			    }
+			}
+			else{
+			    load_select_1 = 1;
+			    if (dyn_load_select_num == 2){
+			        tem_star_1 += t_compressor[0];
+			        tem_star_2 = t_compressor[0];
+	                    
+		        }
+		        if (dyn_load_select_num == 3){
+		            tem_star_1 += tem_star_sin_offset_1;
+			        tem_star_2 = tem_star_sin_offset_1;
+			        Lambda_s_DP = Lambda_dp[0];
+		        }
+			}
+		#endif // end _MOTION_SFB_1
+	
+		#ifdef _MOTION_SFB_2
+			if (dyn_macro_timer != 0){
+			    tem_star_2 += tem_crank;  //for motion control mode	
+				tem_star_1 = tem_crank;
+				if (lambda_s_star_select_2 == 9.0f){
+				    Lambda_s_DP = Lambda_dp[0];
+				}
+			}
+	
+			// if less than assigned cycles, assign     
+			if (k_l<dyn_load_nCycles){
+			    if (load_select_1 == 2 || load_select_1 == 3){
+			        tem_star_2 += tem_crank;  //for motion control mode	
+					tem_star_1 = tem_crank;
+			    }
+			}
+			else{
+			    load_select_1 = 1;
+			    if (dyn_load_select_num == 2){
+			        tem_star_2 += t_compressor[0];
+			        tem_star_1 = t_compressor[0];
+	                    
+		        }
+		        if (dyn_load_select_num == 3){
+		            tem_star_2 += tem_star_sin_offset_1;
+			        tem_star_1 = tem_star_sin_offset_1;
+			        Lambda_s_DP = Lambda_dp[0];
+		        }
+			}
+		#endif // end _MOTION_SFB_2
+	
+	#endif
+	// end _CRANK_LOADING
+
+
+	#ifdef _INCR_TSHAFT_OBSR_2
+		//Calc incremental theta error
+		delta_theta_err_2 = delta_theta - delta_theta_hat_k_2;
+
+		// Luenberger Observer
+		t_cff_obsr_2 = tem_star_2;														// Torque Command Feedforward
+		delta_theta_err_accum_2 = delta_theta_err_accum_2 + delta_theta_err_2;			//Accumlate delta theta error
+		delta_theta_err_accum2_2 = delta_theta_err_accum2_2 + delta_theta_err_accum_2*t_obsr_1;	//Accumulate the accumulated delta theta error
+	
+		//Saturate out Integrators
+	
+		//Observer Controller Output (Disturbance Torque Estimate)
+		torq_obsr_ctrl_2=(delta_theta_err_2*(bo2/t_obsr_1) + delta_theta_err_accum_2*kso2 + delta_theta_err_accum2_2*kiso2); 
+	
+		// Estimated Acceleration 
+		omega_dot_kp1_2  = j_drive_hat_inv_2*(t_cff_obsr_2 + torq_obsr_ctrl_2);
+	
+		// Omega Hat
+		omega_hat_kp1_2  = omega_hat_k_2 + omega_dot_kp1_2*t_obsr_1;
+	
+		// Omega BAR Hat
+		omega_bar_hat_kp1_2 = 0.5f*(omega_hat_kp1_2+omega_hat_k_2);			// Calc omega bar hat (Averageing)
+	
+		// Delta Theta Hat
+		delta_theta_hat_kp1_2 = t_obsr_1*omega_bar_hat_kp1_2;		
+	
+		// Roll back values for next calculation
+		delta_theta_hat_k_2 = delta_theta_hat_kp1_2;
+		omega_hat_k_2 = omega_hat_kp1_2;
+		omega_dot_hat_k_2 = omega_dot_hat_kp1_2;
+	#endif
+	// end _INCR_TSHAFT_OBSR_2
+
+
+	/**************************************************************************/
+	#ifdef _PARAMETERIZED_MODEL
+		
+		//lm_hat_2 			=0.099f;					// Magnetizing inductance (H)
+		//lm_hat_2 			= (-475.03*lambda_s_star_2*lambda_s_star_2*lambda_s_star_2 + 181.22*lambda_s_star_2*lambda_s_star_2 - 33.497*lambda_s_star_2 + 107.76 )/1000;
+		//lm_hat_2 			= -0.321f*lambda_s_star_2*lambda_s_star_2 + 0.131f*lambda_s_star_2 + 0.097f;
+		lm_hat_2 			= -0.321f*lambda_s_star_2*lambda_s_star_2 + 0.131f*lambda_s_star_2 + 0.0918f;
+		//lm_hat_2 			= -0.2235f*lambda_s_star_2*lambda_s_star_2 + 0.107f*lambda_s_star_2 + 0.0892f;
+		if (lm_hat_2 < 0.060f){
+		lm_hat_2 = 0.060f;}
+		//if (lm_hat_2 > 0.120){
+		//lm_hat_2 = 0.120;}
+	
+	
+	
+
+
+		//Secondary
+		lr_hat_2      	 		=lm_hat_2+llr_hat_2;																	// Rotor inductance (H)
+		ls_hat_2      	 		=lm_hat_2+lls_hat_2;																	// Rotor inductance (H)	
+		sigma_hat_2   	 		=1.f - lm_hat_2*lm_hat_2/(ls_hat_2*lr_hat_2); 											// Coupling coefficient
+		r_eq_hat_2    	 		=rs_hat_2 + rr_hat_2*lm_hat_2*lm_hat_2/(lr_hat_2*lr_hat_2); 							// Eqivient resistance
+		tau_eq_hat_2  	 		=ls_hat_2*sigma_hat_2/r_eq_hat_2;														// Short circuit stator time constant
+		tau_r_hat_2	 		=lr_hat_2/rr_hat_2;																		// rotor time constant (Sec)
+		one_o_tau_r_hat_2 		=1.0f/tau_r_hat_2;  																	// inverse of rotor time constant (1/s)
+		tau_r_num_2			=(1-exp(-t_obsr_2/ tau_r_hat_2));														// Rotor time volatileant discrete time dynamics 
+		tau_r_den_2			=exp(-t_sfb_2/ tau_r_hat_2); 															// Rotor time volatileant discrete time dynamics
+		//ls_prime_hat_2			=lls_hat_2+llr_hat_2;																	// Stator short cuircuit inductance (H)
+		c_1_obsr_2				=lm_hat_2*(1.0f-tau_r_hat_2/t_obsr_2+tau_r_hat_2/t_obsr_2*exp(-t_obsr_2/tau_r_hat_2));
+		c_2_obsr_2				=lm_hat_2*(tau_r_hat_2/t_obsr_2 - tau_r_hat_2/t_obsr_2*exp(-t_obsr_2/tau_r_hat_2)- exp(-t_obsr_2/tau_r_hat_2));
+		c_3_obsr_2				=1.5f*pole_pairs*lm_hat_2/(sigma_hat_2*ls_hat_2*lr_hat_2);
+		lr_hat_2_o_lm_hat_2	= lr_hat_2/lm_hat_2;
+		ls_hat_2_t_sigma_hat_2 = ls_hat_2*sigma_hat_2;
+		c_t_hat_2				= (rs_hat_2*lr_hat_2 + rr_hat_2*ls_hat_2)/(ls_hat_2*lr_hat_2*sigma_hat_2); 
+		//c_t_hat_3				= (rr_hat_2*lm_hat_2)/(ls_hat_2*lr_hat_2*sigma_hat_2);
+		//c_t_hat_4				= rr_hat_2/(lr_hat_2*sigma_hat_2);
+
+	#endif	
+	// end _PARAMETERIZED_MODEL
+	
+	
+	
+	
+	
+	
+	
+		#ifdef _OPEN_LOOP_FLUX_OBSR   // OPEN LOOP
+	
+		// Calculate Stator Flux
+		lambda_dqs_s_cm_2.q = ((lm_hat_2/lr_hat_2)*lambda_dqr_s_cm_2.q)+ls_hat_2_t_sigma_hat_2*i_dqs_s_2.q;
+		lambda_dqs_s_cm_2.d = ((lm_hat_2/lr_hat_2)*lambda_dqr_s_cm_2.d)+ls_hat_2_t_sigma_hat_2*i_dqs_s_2.d;
+
+		// Calc using voltage model q-axis
+		lambda_dqs_s_vm_ol_2.q  = lambda_dqs_s_vm_ol_2.q;
+		lambda_dqs_s_vm_ol_2.q += t_obsr_2*v_dqs_s_star_2.q;
+		lambda_dqs_s_vm_ol_2.q -= t_obsr_2*rs_hat_2*i_dqs_s_2.q;
+		lambda_dqs_s_vm_ol_2.q -= t_obsr_2*3.2f*lambda_dqs_s_vm_ol_2.q;      // Zero Reference Correcting Term                                
+
+		// Calc using voltage model d-axis
+		lambda_dqs_s_vm_ol_2.d  = lambda_dqs_s_vm_ol_2.d;
+		lambda_dqs_s_vm_ol_2.d += t_obsr_2*v_dqs_s_star_2.d;
+		lambda_dqs_s_vm_ol_2.d -= t_obsr_2*rs_hat_2*i_dqs_s_2.d;
+		lambda_dqs_s_vm_ol_2.d -= t_obsr_2*3.2f*lambda_dqs_s_vm_ol_2.d;  											
+
+		// Calc rotor values
+		lambda_dqr_s_vm_ol_2.q  = lr_hat_2_o_lm_hat_2*(lambda_dqs_s_vm_ol_2.q-ls_hat_2_t_sigma_hat_2*i_dqs_s_2.q);
+		lambda_dqr_s_vm_ol_2.d  = lr_hat_2_o_lm_hat_2*(lambda_dqs_s_vm_ol_2.d-ls_hat_2_t_sigma_hat_2*i_dqs_s_2.d); 
+	
+	#endif
+	
+	
+
+		#ifdef _DBDTFC_2
+	
+		/*if(omega_star_const_2 > 188.0f){
+	    	
+		     lambda_s_star_2 = lambda_s_star_cmd_pre_2*188.0f/(omega_star_const_2);
+		     lambda_s_star_cmd_2 = lambda_s_star_2;      
+	     
+		}*/
+
+	
+		
+		// Calculate Magnitude of Stator Flux
+		lambda_dqs_e_2.d = sqrtf(lambda_dqs_s_hat_kp1_2.q*lambda_dqs_s_hat_kp1_2.q+ lambda_dqs_s_hat_kp1_2.d*lambda_dqs_s_hat_kp1_2.d);
+	
+	
+		/**************************************************************************/
+		/**************************************************************************/
+		/**     DETERMINE STATOR FLUX REF										 **/
+		/**	 																	 **/
+		/**	1=constant; 2=vary command;  3=drivecylce;  4=rectified and filter	 **/
+		/**	5=MTPA		6=Sin	9=DP   44 = ss loss model						 **/
+		/**	46 = lookahead filter				   								 **/	
+		/**************************************************************************/
+		/**************************************************************************/	
+	
+		// Leave Stator Flux as Calculated Value
+		if( (torq_mod_select != 2.0f) && (lambda_s_star_select_2 == 1.0f)){
+			lambda_s_star_2 = lambda_dqs_e_2.d;
+		}
+	
+
+		// Accept Commands from Datalink interface
+		if( lambda_s_star_select_2 == 2.0f){
+	    
+	    
+			// Check if greater than slew    
+			if(          (lambda_s_star_cmd_2 - lambda_s_star_2) > lambda_db_slew ){
+			    lambda_s_star_2 = lambda_s_star_2+lambda_db_slew;}
+		    else{
+		        // LAMBDA S SLEWING
+			    if( (lambda_s_star_cmd_2 - lambda_s_star_2)  < (-lambda_db_slew) ){
+		           lambda_s_star_2 = lambda_s_star_2-lambda_db_slew;}
+				else{ lambda_s_star_2 = lambda_s_star_cmd_2; }
+			}		
+	
+		}
+		/*
+			if(lambda_s_star_select_2 >= 0.99*3.0f && lambda_s_star_select_2 <= 1.01*3.0f){
+	    
+		    lambda_star_counter_2++;
+	    
+		    if(lambda_star_counter_2 >= 0 && lambda_star_counter_2 < 11){
+		     lambda_s_star_cmd_2 = 0.3;   
+		     tem_star_2 = 2;   
+		    }
+		    if(lambda_star_counter_2 >= 11 && lambda_star_counter_2 < 21){
+		     lambda_s_star_cmd_2 = 0.3;   
+		     tem_star_2 = 5;   
+		    }
+	    
+		    if(lambda_star_counter_2 >= 21 && lambda_star_counter_2 < 31){
+		     lambda_s_star_cmd_2 = 0.3;
+		     tem_star_2 = 2;  
+		    }
+		    if(lambda_star_counter_2 >= 31 && lambda_star_counter_2 < 41){
+		     lambda_s_star_cmd_2 = 0.3;
+		     tem_star_2 = 5;   
+		    }
+	    
+		    if(lambda_star_counter_2 >= 41 && lambda_star_counter_2 < 51){
+		     lambda_s_star_cmd_2 = 0.3;
+		     tem_star_2 = 2;   
+		    }
+		    if(lambda_star_counter_2 >= 51 && lambda_star_counter_2 < 61){
+		     lambda_s_star_cmd_2 = 0.3;
+		     tem_star_2 = 5;   
+		    }
+		    if(lambda_star_counter_2 >= 71){
+		     lambda_s_star_cmd_2 = 0.3; 
+		     tem_star_2 = 0;
+	      
+		     lambda_star_counter_2 = 0;
+		     lambda_s_star_select_2 = 2;  
+		    }
+		}
+		*/
+	
+		/*
+		for( t_i = 0; t_i < 500;t_i++){
+		    t_sum += t_avg[t_i];
+			t_avg_old[t_i] = t_avg[t_i];	//store old values of torque_star
+		}
+	    
+		tem_star_avg = t_sum/500;	
+		t_avg[0] = tem_star_2;//store first new value
+	
+		for(t_i = 1; t_i < 500; t_i++){
+		t_avg[t_i] = t_avg_old[t_i-1];
+		}
+		*/
+	
+
+	
+	
+	
+		// Optimal Flux Command Code
+		if(lambda_s_star_select_2 == 4.0f){
+	    
+	    
+		 //Filtering Properties 2/3/2012		
+
+	//	tem_star_avg = (tem_star_2 + tkm1 +tkm2 + tkm3 + tkm4 + tkm5 + tkm6 + tkm7 + tkm8 + tkm9 + tkm10 + tkm11 + tkm12 + tkm13 + tkm14+ tkm15+ tkm16+ tkm17+ tkm18+ tkm19+ tkm20+ tkm21+ tkm22+ tkm23+ tkm24+ tkm25+ tkm26 + tkm27 +tkm28 + tkm29 + tkm30 + tkm31 + tkm32 + tkm33 + tkm34 + tkm35 + tkm36 + tkm37 + tkm38 + tkm39 + tkm40+ tkm41+ tkm42+ tkm43+ tkm44+ tkm45+ tkm46+ tkm47+ tkm48+ tkm49+ tkm50+ tkm51+ tkm52 + tkm53 +tkm54 + tkm55 + tkm56 + tkm57 + tkm58 + tkm59 + tkm60 + tkm61 + tkm62 + tkm63 + tkm64 + tkm65 + tkm66+ tkm67+ tkm68+ tkm69+ tkm70+ tkm71+ tkm72+ tkm73+ tkm74+ tkm75+ tkm76)/77;
+	
+		// Provide filtered estimate to reduce noise for dyno application
+		//delta_tem_2 = tem_star_2-tem_hat_kp1_2;	// Calculate Delta Torque Term
+		if(tem_star_2 > tem_star_avg){
+		   tem_star_avg =tem_star_2;
+		   tem_star_opt_2 = fabs(tem_star_2);
+		}
+		else{
+		   tem_star_avg = tem_star_avg*0.9996f + tem_star_2*0.0004f; //tau = 260 ms
+		   //tem_star_avg = tem_star_avg*0.99923f + tem_star_2*0.00077f; //tau = 130 ms
+		   //tem_star_avg = tem_star_avg*0.99981f + tem_star_2*0.00019f; //tau = 520 ms
+		   //tem_star_avg = tem_star_avg*0.99846f + tem_star_2*0.00154f; //tau = 65 ms
+		   //tem_star_avg = tem_star_avg*0.99693f + tem_star_2*0.00307f; //tau = 32.5 ms
+		   tem_star_opt_2 = tem_star_avg;
+		}
+	
+	//	if(tem_star_2 > tem_star_avg){
+	//	   tem_star_opt_2 = fabs(tem_star_2);
+	//		}
+	//	if(tem_star_2 < tem_star_avg){ //decreasing torque command below slow moving average	
+	//			tem_star_opt_2 = tem_star_avg;
+	//		}
+	
+
+		/*
+		tkm1 =tem_star_2;
+		tkm2 = tkm1;
+		tkm3 = tkm2;
+		tkm4 = tkm3;
+		tkm5 = tkm4;
+		tkm6 = tkm5;
+		tkm7 = tkm6;
+		tkm8 = tkm7;
+		tkm9 = tkm8;
+		tkm10 = tkm9;
+		tkm11 = tkm10;
+		tkm12 = tkm11;
+		tkm13 = tkm12;
+		tkm14 = tkm13;
+		tkm15 = tkm14;
+		tkm16 = tkm15;
+		tkm17 = tkm16;
+		tkm18 = tkm17;
+		tkm19 = tkm18;
+		tkm20 = tkm19;
+		tkm21 = tkm20;
+		tkm22 = tkm21;
+		tkm23 = tkm22;
+		tkm24 = tkm23;
+		tkm25 = tkm24;
+		tkm26 = tkm25;
+		tkm27 = tkm26;
+		tkm28 = tkm27;
+		tkm29 = tkm28;
+		tkm30 = tkm29;
+		tkm31 = tkm30;
+		tkm32 = tkm31;
+		tkm33 = tkm32;
+		tkm34 = tkm33;
+		tkm35 = tkm34;
+		tkm36 = tkm35;
+		tkm37 = tkm36;
+		tkm38 = tkm37;
+		tkm39 = tkm38;
+		tkm40 = tkm39;
+		tkm41 = tkm40;
+		tkm42 = tkm41;
+		tkm43 = tkm42;
+		tkm44 = tkm43;
+		tkm45 = tkm44;
+		tkm46 = tkm45;
+		tkm47 = tkm46;
+		tkm48 = tkm47;
+		tkm49 = tkm48;
+		tkm50 = tkm49;
+		tkm51 = tkm50;
+		tkm52= tkm51;
+		tkm53= tkm52;
+		tkm54= tkm53;
+		tkm55= tkm54;
+		tkm56= tkm55;
+		tkm57= tkm56;
+		tkm58= tkm57;
+		tkm59= tkm58;
+		tkm60 = tkm59;
+		tkm61 = tkm60;
+		tkm62 = tkm61;
+		tkm63 = tkm62;
+		tkm64 = tkm63;
+		tkm65 = tkm64;
+		tkm66 = tkm65;
+		tkm67 = tkm66;
+		tkm68 = tkm67;
+		tkm69 = tkm68;
+		tkm70 = tkm69;
+		tkm71 = tkm70;
+		tkm72 = tkm71;
+		tkm73 = tkm72;
+		tkm74 = tkm73;
+		tkm75 = tkm74;
+		tkm76 = tkm75;
+	*/
+		    //tem_star_opt_2 = fabs(tem_star_2);
+	    
+		    //tem_star_opt_2 = fabs(tem_crank);    
+
+			//	theta_idx = ceil(1000*theta_hat_k_1/two_pi);
+			//	lambda_s_star_optimal_2 = lambda_s_star_optimal_array_2[theta_idx];		
+			//	lambda_s_star_optimal_2 = 0.15f*sinf(theta_hat_k_1 + pi_over_3) + 0.35f;  //command directly the large profile on the test machine    	        	    	    
+	    
+	
+		//stepwise opt
+			//if(theta_hat_k_1 > 0 && theta_hat_k_1 < (pi/2)){
+			//lambda_s_star_optimal_2 = 0.5;}		
+			//if(theta_hat_k_1 > (pi/2)  && theta_hat_k_1 < (3*pi/2)){
+			//lambda_s_star_optimal_2 = 0.2;}
+			//if(theta_hat_k_1 > (3*pi/2) && theta_hat_k_1 < two_pi ){
+			//lambda_s_star_optimal_2 = 0.5;}
+		
+		
+			lambda_s_star_optimal_2  = optimal_flux_coeff_c1_2*tem_star_opt_2*tem_star_opt_2*tem_star_opt_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c2_2*tem_star_opt_2*tem_star_opt_2*omega_star_kp1_2;
+			lambda_s_star_optimal_2 += optimal_flux_coeff_c3_2*tem_star_opt_2*tem_star_opt_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c4_2*tem_star_opt_2*omega_star_kp1_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c5_2*tem_star_opt_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c6_2*tem_star_opt_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c7_2*omega_star_kp1_2*omega_star_kp1_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c8_2*omega_star_kp1_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c9_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c10_2;
+	    
+		  //	lambda_s_star_optimal_2 = (lambda_s_star_optimal_2) + 0.05;     //create offset in optimal flux to help calibrate     
+	    	    	    	    
+		//Check to make sure stator flux command is within acceptable limits and correct if outside
+	   
+		    if(lambda_s_star_optimal_2 < lambda_s_star_limit_low_2){	        
+		       lambda_s_star_optimal_2 = lambda_s_star_limit_low_2;	        
+		      }
+	      
+		    if(lambda_s_star_optimal_2 > lambda_s_star_limit_high_2){	        
+		       lambda_s_star_optimal_2 = lambda_s_star_limit_high_2;	        
+		      }
+	    	
+		 //First Order Lag Filter
+		// tau_s_prime = sigma_hat_2*ls_hat_2;
+		// lambda_s_star_optimal_2 = (1/tau_s_prime)*lambda_s_star_optimal_2 +  lambda_s_star_2*exp(-dt/tau_s_prime);
+	
+		//if(delta_tem_2 < 0){ //decreasing torque command 
+		//lambda_s_star_optimal_2 = (0.001)*lambda_s_star_optimal_2 +  (0.999)*lambda_s_star_2;
+		//}
+
+	         
+		 //Check to make sure flux is not changing too quickly   
+	    
+		 	if((lambda_s_star_optimal_2 - lambda_s_star_2) > lambda_db_slew){
+		    	lambda_s_star_2 = lambda_s_star_2+lambda_db_slew;}
+		    else{
+ 
+	    		if((lambda_s_star_optimal_2 - lambda_s_star_2) < (-lambda_db_slew)){
+	    		    lambda_s_star_2 = lambda_s_star_2-lambda_db_slew;}
+    		
+	    		    else{lambda_s_star_2 = lambda_s_star_optimal_2;}
+    		
+			}
+			
+				lambda_s_star_cmd_2 = lambda_s_star_2;  	
+		}
+	
+	
+
+		/*if(lambda_s_star_select_2 >= 0.99*5.0f && lambda_s_star_select_2 <= 1.01*5.0f){
+	    
+		    lambda_star_counter_2++;
+	    
+		    switch (lambda_star_counter_2)
+		    {
+		      case 1:
+		      	lambda_s_star_cmd_2 = 0.21f;
+		      	break;  
+	       
+		      case 2:
+		      	lambda_s_star_cmd_2 = 0.25f;
+		      	break;
+	      
+		      case 3:
+		      	lambda_s_star_cmd_2 = 0.21f;
+		      	break;
+	      
+		      case 4:
+		      	lambda_s_star_cmd_2 = 0.25f;
+		      	break;   
+	      
+		      case 5:
+		      	lambda_s_star_cmd_2 = 0.21f;
+		      	break;
+	      
+		      default:
+		      	lambda_s_star_cmd_2 = 0.25f;
+		      	lambda_star_counter_2 = 0;
+		      	break;
+		    }
+	    
+		    lambda_s_star_2 = lambda_s_star_cmd_2;
+	    
+		    if( lambda_star_counter_2 >= 1){
+	     
+		        lambda_s_star_cmd_2 = 0.26f;
+		        lambda_star_counter_2 = 0;
+	           
+		    }
+		    else
+		    {
+		        lambda_s_star_cmd_2 = 0.22f;
+	        
+		    }
+	    
+	    
+	    
+		}*/
+	
+	
+	
+		/*if(omega_star_const_2 > 188.0f){
+	    	
+		     lambda_s_star_2 = lambda_s_star_cmd_pre_2*188.0f/(omega_star_const_2);
+		     lambda_s_star_cmd_2 = lambda_s_star_2;      
+	     
+		}*/
+
+		if(lambda_s_star_select_2 == 9.0f){
+		    if (dyn_load_select_num == 2){
+		        lambda_s_star_2 = Lambda_s_DP;
+		    }
+		    if (dyn_load_select_num == 3){
+		        lambda_s_star_2 = Lambda_s_DP;
+		    }
+	    
+		}
+		// Optimal Flux Command Code
+		if(lambda_s_star_select_2 == 44.0f){
+		    
+		    tem_star_opt_2 = fabs(tem_star_2);
+   	        	    	    		
+			lambda_s_star_optimal_2  = optimal_flux_coeff_c1_2*tem_star_opt_2*tem_star_opt_2*tem_star_opt_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c2_2*tem_star_opt_2*tem_star_opt_2*omega_star_kp1_2;
+			lambda_s_star_optimal_2 += optimal_flux_coeff_c3_2*tem_star_opt_2*tem_star_opt_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c4_2*tem_star_opt_2*omega_star_kp1_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c5_2*tem_star_opt_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c6_2*tem_star_opt_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c7_2*omega_star_kp1_2*omega_star_kp1_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c8_2*omega_star_kp1_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c9_2*omega_star_kp1_2;
+		    lambda_s_star_optimal_2 += optimal_flux_coeff_c10_2;
+	    
+		  //	lambda_s_star_optimal_2 = (lambda_s_star_optimal_2) + 0.1;     //create offset in optimal flux to help calibrate     
+	    	    	    	    
+		//Check to make sure stator flux command is within acceptable limits and correct if outside
+	   
+		    if(lambda_s_star_optimal_2 < lambda_s_star_limit_low_2){	        
+		       lambda_s_star_optimal_2 = lambda_s_star_limit_low_2;	        
+		      }	      
+		    if(lambda_s_star_optimal_2 > lambda_s_star_limit_high_2){	        
+		       lambda_s_star_optimal_2 = lambda_s_star_limit_high_2;	        
+		      }         
+		 //Check to make sure flux is not changing too quickly   
+	    
+		 	if((lambda_s_star_optimal_2 - lambda_s_star_2) > lambda_db_slew){
+		    	lambda_s_star_2 = lambda_s_star_2+lambda_db_slew;}
+		    else{
+ 
+	    		if((lambda_s_star_optimal_2 - lambda_s_star_2) < (-lambda_db_slew)){
+	    		    lambda_s_star_2 = lambda_s_star_2-lambda_db_slew;}
+    		
+	    		    else{lambda_s_star_2 = lambda_s_star_optimal_2;}
+			}
+			
+				lambda_s_star_cmd_2 = lambda_s_star_2;  	
+	
+		}
+
+	
+		// Lagrange Optimal Flux Command Code (Brian)  lambda_dqs_e_opt_kp1_2.d
+		#ifdef _Lagrange_Opt
+	
+			if(lambda_s_star_select_2 == 4.0f){
+		    lambda_s_star_Lag_optimal_2 = lambda_dqs_e_opt_kp1_2.d;
+				if((lambda_s_star_Lag_optimal_2 - lambda_s_star_2) > lambda_db_slew){
+		    		lambda_s_star_2 = lambda_s_star_2+lambda_db_slew;}
+		    	else{
+ 
+	    			if((lambda_s_star_Lag_optimal_2 - lambda_s_star_2) < (-lambda_db_slew)){
+	    		    	lambda_s_star_2 = lambda_s_star_2-lambda_db_slew;}
+	    		else{lambda_s_star_2 = lambda_s_star_Lag_optimal_2;}
+    		
+				}
+				
+		}
+	
+		#endif
+	
+	/**************************************************************************/
+	/**************************************************************************/
+	/**     DETERMINE VOLT-SEC Solution										 **/
+	/**	 																	 **/	
+	/**************************************************************************/
+	/**************************************************************************/
+	
+	
+		
+	// Rotate Rotor Flux Vector into stator flux aligned synch reference frame 
+	lambda_dqr_e_2.q  = lambda_dqs_s_hat_kp1_2.q;//(lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*lambda_dqr_s_hat_kp1_2.q;
+	//lambda_dqr_e_2.q -= (lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*lambda_dqr_s_hat_kp1_2.d;
+	
+	
+	lambda_dqr_e_2.d  = lambda_dqs_s_hat_kp1_2.d;//(lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*lambda_dqr_s_hat_kp1_2.q;
+	//lambda_dqr_e_2.d += (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*lambda_dqr_s_hat_kp1_2.d;
+	
+	// roll back synch frame current estimates
+	i_dqs_es_2_km1.q = i_dqs_es_2.q;
+	i_dqs_es_2_km1.d = i_dqs_es_2.d;
+	// Rotate Estimated Stator Current Vector into stator flux aligned synch reference frame 
+	i_dqs_es_2.q  = (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*i_dqs_s_hat_kp1_2.q;
+	i_dqs_es_2.q -= (lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*i_dqs_s_hat_kp1_2.d;
+	
+	
+	i_dqs_es_2.d  = (lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*i_dqs_s_hat_kp1_2.q;
+	i_dqs_es_2.d += (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*i_dqs_s_hat_kp1_2.d;
+	
+
+	// Calculate Delta Torque Term
+	delta_tem_2 = tem_star_2-tem_hat_kp1_2;
+
+	// Calculate slope of torque line (SPMSM, m = 0)
+	m_2 = 0; //lambda_dqr_e_2.q / lambda_dqr_e_2.d;
+	
+/*	// Calculate Intercept of Torque Line (IM)
+	b_2  = (c_t_hat_2*t_obsr_2*tem_hat_kp1_2+delta_tem_2)/(lambda_dqr_e_2.d*c_3_obsr_2);
+	b_2 += omega_l_hat_kp1_1*pole_pairs*t_obsr_2*lambda_dqs_e_2.d;
+*/
+	// Calculate Intercept of Torque Line (SPMSM)
+	b_2  = 2*c_3_obsr_2*delta_tem_2*lq_hat_2/(t_obsr_2*lambda_hat_2);
+	b_2 += omega_l_hat_kp1_1*lambda_dqr_e_2.d;
+	b_2 += 1/tau_hat_2*lambda_dqs_e_2.q;
+	
+	//////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	#ifdef _MTPA
+		delta_q_plus = (-2*b_2 + sqrtf(4*b_2*b_2 - 4*(1+1/(m_2*m_2))*(b_2*b_2 - (v_dc_link_filtered*v_dc_link_filtered* one_over_sqrt3*one_over_sqrt3 * t_obsr_2*t_obsr_2) ))) / (2*(1+1/(m_2*m_2))) ;
+		delta_q_minus = (2*b_2 + sqrtf(4*b_2*b_2 - 4*(1+1/(m_2*m_2))*(b_2*b_2 - (v_dc_link_filtered*v_dc_link_filtered* one_over_sqrt3*one_over_sqrt3 * t_obsr_2*t_obsr_2) ))) / (2*(1+1/(m_2*m_2))) ;
+	
+		Pt_c.d = delta_q_plus/m_2;
+		Pt_c.q = b_2 + delta_q_plus;
+	
+		Pt_a.d = -delta_q_minus/m_2;
+		Pt_a.q = b_2 - delta_q_minus;
+	
+		//N = 5; 	//number of steps
+		Inc_flux_d  = (Pt_a.d - Pt_c.d)/N;
+	
+		Pt_1.d = Pt_a.d - Inc_flux_d;
+		Pt_1.q = Pt_a.q - Inc_flux_d*m_2;
+	
+		Pt_2.d = Pt_a.d - Inc_flux_d*2;
+		Pt_2.q = Pt_a.q - Inc_flux_d*m_2*2;
+	
+		Pt_3.d = Pt_a.d - Inc_flux_d*3;
+		Pt_3.q = Pt_a.q - Inc_flux_d*m_2*3;
+	
+		Pt_4.d = Pt_a.d - Inc_flux_d*4;
+		Pt_4.q = Pt_a.q - Inc_flux_d*m_2*4;
+	
+		Pt_5.d = Pt_a.d - Inc_flux_d*5;
+		Pt_5.q = Pt_a.q - Inc_flux_d*m_2*5;//should be the same as Pt_C
+	    
+	
+		//find what values of flux it represents	
+		lambda_c.d = lambda_dqs_e_2.d + Pt_c.d;
+		lambda_c.q = Pt_c.q;
+	
+		lambda_a.d = lambda_dqs_e_2.d + Pt_a.d;
+		lambda_a.q = Pt_a.q;
+	
+		lambda_1.d = lambda_dqs_e_2.d + Pt_1.d;
+		lambda_1.q = Pt_1.q;
+	
+		lambda_2.d = lambda_dqs_e_2.d + Pt_2.d;
+		lambda_2.q = Pt_2.q;
+	
+		lambda_3.d = lambda_dqs_e_2.d + Pt_3.d;
+		lambda_3.q = Pt_3.q;
+	
+		lambda_4.d = lambda_dqs_e_2.d + Pt_4.d;
+		lambda_4.q = Pt_4.q;
+	
+		lambda_5.d = lambda_dqs_e_2.d + Pt_5.d;
+		lambda_5.q = Pt_5.q;
+	
+		FLUX[0] = sqrtf(lambda_a.d*lambda_a.d + lambda_a.q*lambda_a.q);
+		FLUX[1] = sqrtf(lambda_1.d*lambda_1.d + lambda_1.q*lambda_1.q);
+		FLUX[2] = sqrtf(lambda_2.d*lambda_2.d + lambda_2.q*lambda_2.q);
+		FLUX[3] = sqrtf(lambda_3.d*lambda_3.d + lambda_3.q*lambda_3.q);
+		FLUX[4] = sqrtf(lambda_4.d*lambda_4.d + lambda_4.q*lambda_4.q);
+		FLUX[5] = sqrtf(lambda_5.d*lambda_5.d + lambda_5.q*lambda_5.q);
+		FLUX[6] = sqrtf(lambda_c.d*lambda_c.d + lambda_c.q*lambda_c.q);
+	
+	
+		//MTPA addition//////
+	
+		//num = ls_hat_2*(i_dqs_es_2.q*(1 + sigma_hat_2*tau_r_hat_2/t_obsr_2) - i_dqs_es_2_km1.q*(sigma_hat_2*tau_r_hat_2/t_obsr_2));
+		//den = tau_r_hat_2*lambda_s_star_2 - sigma_hat_2*tau_r_hat_2*ls_hat_2*i_dqs_es_2.d;
+	
+		//theta_e_hat_km1 = theta_e_hat; //roll back
+		//not righttheta_e_hat = atan2f(lambda_dqr_e_2.q,lambda_dqr_e_2.d);
+	
+		//theta_rotor2 = fabs(atan2f(lambda_dqr_e_2.q,lambda_dqr_e_2.d));
+		//omega_slip_2 = (theta_stator)/t_obsr_2;
+		//omega_slip_3 = (theta_rotor1 - theta_rotor2)/t_obsr_2;
+	
+		//omega_slip_2 = (theta_e_hat-theta_e_hat_km1)/t_obsr_2;
+		//omega_slip = num/den;
+
+		//omega_slip = (theta_stator/t_obsr_2) - omega_l_hat_kp1_1*2;
+									
+		//excitation frequency
+		omega_e_bar_A = atanf(lambda_a.q/-lambda_a.d)/(t_obsr_2) ;
+		omega_e_bar_C = atanf(lambda_c.q/-lambda_c.d)/(t_obsr_2) ;
+	//	omega_e_bar_1 = (alpha_1- alpha)/(t_obsr_2) ;
+	//	omega_e_bar_2 = (alpha_2- alpha)/(t_obsr_2) ;
+	//	omega_e_bar_3 = (alpha_3- alpha)/(t_obsr_2) ;
+	//	omega_e_bar_4 = (alpha_4- alpha)/(t_obsr_2) ;
+	//	omega_e_bar_5 = (alpha_5- alpha)/(t_obsr_2) ;
+	
+		omega_slip_A = omega_e_bar_A - pole_pairs*omega_l_hat_kp1_1;
+		omega_slip_C = omega_e_bar_C - pole_pairs*omega_l_hat_kp1_1;
+	//	omega_slip_1 = omega_e_bar_1 - omega_l_hat_kp1_1;
+	//	omega_slip_2 = omega_e_bar_2 - omega_l_hat_kp1_1;
+	//	omega_slip_3 = omega_e_bar_3 - omega_l_hat_kp1_1;
+	//	omega_slip_4 = omega_e_bar_4 - omega_l_hat_kp1_1;
+	//	omega_slip_5 = omega_e_bar_5 - omega_l_hat_kp1_1;
+
+	
+		lambda_dqs_e_2.q = 0;
+	
+		A_A	=	X1*lambda_dqr_e_2.q  + X2*omega_slip_A*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+		B_A	=	X1*lambda_dqr_e_2.d  + X2*omega_slip_A*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+		A_C	=	X1*lambda_dqr_e_2.q  + X2*omega_slip_C*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+		B_C	=	X1*lambda_dqr_e_2.d  + X2*omega_slip_C*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+	//	A_1	=	X1*lambda_dqr_e_2.q  + X2*omega_slip_1*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+	//	B_1	=	X1*lambda_dqr_e_2.d  + X2*omega_slip_1*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+	//	A_2	=	X1*lambda_dqr_e_2.q  + X2*omega_slip_2*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+	//	B_2	=	X1*lambda_dqr_e_2.d  + X2*omega_slip_2*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+	//	A_3	=	X1*lambda_dqr_e_2.q  + X2*omega_slip_3*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+	//	B_3	=	X1*lambda_dqr_e_2.d  + X2*omega_slip_3*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+	//	A_4	=	X1*lambda_dqr_e_2.q  + X2*omega_slip_4*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+	//	B_4	=	X1*lambda_dqr_e_2.d  + X2*omega_slip_4*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+	//	A_5	=	X1*lambda_dqr_e_2.q  + X2*omega_slip_5*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+	//	B_5	=	X1*lambda_dqr_e_2.d  + X2*omega_slip_5*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+	
+		PtC_current = (A1*lambda_c.q + A_C)*(A1*lambda_c.q + A_C) + (A1*lambda_c.d + B_C)*(A1*lambda_c.d + B_C);
+		PtA_current = (A1*lambda_a.q + A_A)*(A1*lambda_a.q + A_A) + (A1*lambda_a.d + B_A)*(A1*lambda_a.d + B_A);	
+	//	Pt1_current = (A1*lambda_1.q + A_1)*(A1*lambda_1.q + A_1) + (A1*lambda_1.d + B_1)*(A1*lambda_1.d + B_1);
+	//	Pt2_current = (A1*lambda_2.q + A_2)*(A1*lambda_2.q + A_2) + (A1*lambda_2.d + B_2)*(A1*lambda_2.d + B_2);
+	//	Pt3_current = (A1*lambda_3.q + A_3)*(A1*lambda_3.q + A_3) + (A1*lambda_3.d + B_3)*(A1*lambda_3.d + B_3);
+	//	Pt4_current = (A1*lambda_4.q + A_4)*(A1*lambda_4.q + A_4) + (A1*lambda_4.d + B_4)*(A1*lambda_4.d + B_4);
+	//	Pt5_current = (A1*lambda_5.q + A_5)*(A1*lambda_5.q + A_5) + (A1*lambda_5.d + B_5)*(A1*lambda_5.d + B_5);
+	
+		PtC_iron = ke*(omega_e_bar_C/two_pi)*(omega_e_bar_C/two_pi)*(FLUX[6]/0.12)*(FLUX[6]/0.12) + kh*(omega_e_bar_C/two_pi)*(FLUX[6]/0.12)*(FLUX[6]/0.12);
+		PtA_iron = ke*(omega_e_bar_A/two_pi)*(omega_e_bar_A/two_pi)*(FLUX[0]/0.12)*(FLUX[0]/0.12) + kh*(omega_e_bar_A/two_pi)*(FLUX[0]/0.12)*(FLUX[0]/0.12);;
+		//Pt1_iron = ;
+		//Pt2_iron = ;
+		//Pt3_iron = ;
+		//Pt4_iron = ;
+		//Pt5_iron = ;
+	
+		COST[0] = PtA_current + PtA_iron;
+		COST[1]	= 0;//Pt1_current + Pt1_iron;
+		COST[2] = 0;//Pt2_current + Pt2_iron;
+		COST[3] = 0;//Pt3_current + Pt3_iron;
+		COST[4] = 0;//Pt4_current + Pt4_iron;
+		COST[5] = 0;//Pt5_current + Pt5_iron;
+		COST[6] = PtC_current + PtC_iron;
+	
+
+		//Find Minumum 
+		COST_min = COST[0];
+		index_min = 0; 
+		for (i=1; i<7; i++){
+			if (COST[i] < COST_min){
+				COST_min = COST[i];
+				index_min = i;
+			}
+		}
+	
+		lambda_s_star_mtpa_km1 = lambda_s_star_2;
+		lambda_s_star_mtpa = FLUX[index_min];
+	#endif	
+
+	
+		
+	//MTPA Flux select	
+	/*
+	if(lambda_s_star_select_2 == 5.0f){
+	 
+		    if(fabs(lambda_s_star_mtpa-lambda_s_star_mtpa_km1)/lambda_s_star_mtpa_km1 > 0.015){   //set the magnitude difference needed to switch 
+	 		lambda_s_star_2 = lambda_s_star_mtpa;  
+		    }
+		    else{
+		        lambda_s_star_2 = lambda_s_star_mtpa_km1;
+		    }
+	}
+	*/
+	//find p_in_2 before the voltage vector for next time step is updated, this way using sampled current and the applied voltage
+	p_in_2 	= 1.5f*(v_dqs_s_star_2.q*i_dqs_s_2.q+v_dqs_s_star_2.d*i_dqs_s_2.d);
+	//p_in_2 	= 1.5f*(v_dqs_s_star_2.q*i_dqs_s_hat_kp1_2.q+v_dqs_s_star_2.d*i_dqs_s_hat_kp1_2.d);
+	
+	i_dqr_s_2.q = lambda_dqr_s_hat_kp1_2.q/lq_hat_2;
+	i_dqr_s_2.d = (lambda_dqr_s_hat_kp1_2.d - lambda_hat_2)/ld_hat_2;
+
+	//p_iron_2 = ke*omega_e_bar*omega_e_bar*lambda_s_star_2*lambda_s_star_2 + kh*omega_e_bar*lambda_s_star_2*lambda_s_star_2;
+	//p_cond_2 = 1.5f*((i_dqs_s_2.q*i_dqs_s_2.q + i_dqs_s_2.d*i_dqs_s_2.d)*rs_hat_2 + (i_dqr_s_2.q*i_dqr_s_2.q + i_dqr_s_2.d*i_dqr_s_2.d)*rr_hat_2);
+	//p_loss_2 = p_iron_2 + p_cond_2;
+	
+	
+	////////////////////////////////////////////
+	//Optimal flux search algorithm
+	//assuming: constant speed ...added Fall 2011
+	////////////////////////////////////////////
+	#ifdef _OPT_SEARCH
+
+	if(lambda_s_star_select_2 == 7.0f){
+	
+	theta_idx = floor(99*theta_hat_k_1/two_pi);
+	theta_idx_kp1 = floor(99*theta_hat_kp1_1/two_pi);
+
+	if ((p_in_opt[theta_idx] - p_in_2 ) > delta_Pin_min){ //the test improved the input power
+	    p_in_opt[theta_idx] = p_in_2;
+	    if (lambda_s_opt[theta_idx] > lambda_dqs_e_2.d){
+	        test = -delta_lambda;
+	    }
+	    if (lambda_s_opt[theta_idx] < lambda_dqs_e_2.d){
+	        test = delta_lambda;
+	    }
+	    lambda_s_opt[theta_idx] = lambda_dqs_e_2.d; //update optimal flux vector
+	    lambda_s_test[theta_idx] = lambda_s_test[theta_idx] + test;  //updated flux test vector
+	    
+	}
+	
+	if ((p_in_opt[theta_idx] - p_in_2 ) > -delta_Pin_min){  //the test increased the input power
+	   if (lambda_s_opt[theta_idx] > lambda_dqs_e_2.d){
+	        test = delta_lambda;
+	    }
+	    if (lambda_s_opt[theta_idx] < lambda_dqs_e_2.d){
+	        test = -delta_lambda;
+	    }
+	    lambda_s_test[theta_idx] = lambda_s_test[theta_idx] + test;  //updated flux test vector
+	}
+	
+	if( ((p_in_opt[theta_idx] - p_in_2 ) < delta_Pin_min) &&  ((p_in_opt[theta_idx]- p_in_2) < -delta_Pin_min)){
+	    test = 0;  //no change for next iteration
+	}
+	
+	lambda_s_star_2 = lambda_s_test[theta_idx_kp1]; //create stator flux command for kp1
+	}
+	
+	if(lambda_s_star_select_2 == 8.0f){		//end searching and utilized stored optimal flux array
+	lambda_s_star_2 = lambda_s_opt[theta_idx_kp1]; //create stator flux command for kp1    
+	}
+	
+	#endif
+	////////////////////////////////////////////
+	
+
+	
+	//////// Sinusoidal Flux Reference/////////
+	/*
+	    if (lambda_s_star_select_2 == 6.0f){
+	        //lambda_s_star_sin_amp_2 = 0.05;
+	        //lambda_s_star_sin_freq_2 = 0.1;
+	        //lambda_s_star_sin_offset_2 = 0.45; 
+	       
+	        lambda_s_star_2 =  lambda_s_star_sin_amp_2*sinf(two_pi*lambda_s_star_sin_freq_2*cmd_gen_step*dt)+ lambda_s_star_sin_offset_2; 
+	       //lambda_s_star_2 = lambda_s_star_sin_amp_2*sinf(theta_hat_k_1) + lambda_s_star_sin_offset_2;
+			//	if(lambda_s_star_2  < lambda_s_star_sin_offset_2){
+	    	//		lambda_s_star_2 =wh lambda_s_star_sin_offset_2;
+			//		}  
+		//lambda_s_star_2 = lambda_s_star_sin_amp_2*sinf(theta_hat_k_1)+ lambda_s_star_sin_offset_2;
+		
+		//just slew it depending on which angle
+		
+		if (theta_hat_k_1 > 0 && theta_hat_k_1 <= pi/18) {
+		    lambda_s_star_2 = lambda_s_star_sin_offset_2;
+		}
+		
+		if (theta_hat_k_1 > 0 && theta_hat_k_1 <= pi_over_2) {
+		    
+		    lambda_s_star_2 = lambda_s_star_2 + 0.00025;
+		}
+		if (theta_hat_k_1 > pi_over_2 && theta_hat_k_1 <= pi) {
+		    
+		    lambda_s_star_2 = lambda_s_star_2 - 0.00025;
+		}
+		if (theta_hat_k_1 > pi && theta_hat_k_1 <= 3*pi_over_2 ) {
+		    
+		    lambda_s_star_2 = lambda_s_star_2 - 0.0005;
+		}
+		if (theta_hat_k_1 > 3*pi_over_2 && theta_hat_k_1 <= two_pi) {
+		    
+		    lambda_s_star_2 = lambda_s_star_2 + 0.0005;
+		}
+		
+		
+		//saturate
+		if (lambda_s_star_2 > 0.5) { 
+		    lambda_s_star_2 = 0.5;
+		}
+		if (lambda_s_star_2 < 0.2) { 
+		    lambda_s_star_2 = 0.2;
+		}
+	    }
+		*/
+	
+		
+	////////////////////////////////////////
+	
+	z_d_2 = -(2*m_2*b_2 + 2*lambda_dqs_e_2.d);   																//Calculates -b term of quadratic formula
+	
+	root_1_2 = z_d_2*z_d_2;																						//Calculates b squared term under the radical, poorly named
+	root_2_2 = 4*(m_2*m_2+1)*(b_2*b_2-(lambda_s_star_2*lambda_s_star_2-lambda_dqs_e_2.d*lambda_dqs_e_2.d));		//Calculates 4ac term under the radical, poorly named
+	
+	if(root_1_2 >= root_2_2){																					//Makes sure quad equations produces real result
+	    
+	    z_d_2 = z_d_2 + sqrtf(root_1_2-root_2_2);																//Calculates roots of quadratic equation
+	    z_d_2 = z_d_2 / (2.0f*(m_2*m_2+1.f));																	//Finishes calculation of quadratic formula
+	    z_q_2 = m_2*z_d_2+b_2;																					//Calculates other component of vector, y = mx+b
+	    test_5 = 0.0f;			
+
+	}
+	else{
+	    
+	    // No Feasible Solution Possible (Could use some work)
+	    z_d_2 =  b_2/2.0f;
+	    z_q_2 = -b_2/(2.0f*m_2);
+	    test_5 = 5.0f;
+	    
+
+	}
+	
+	
+	lambda_dqs_e_2_kp1.d = lambda_dqs_e_2.d + z_d_2;
+	lambda_dqs_e_2_kp1.q = z_q_2;
+	//theta_stator = fabs(atan2f(lambda_dqs_e_2_kp1.q,lambda_dqs_e_2_kp1.d));
+	//theta_rotor1 = theta_stator + fabs(atan2f(lambda_dqr_e_2.q,lambda_dqr_e_2.d));
+	
+	//alpha_e = atan2f(-lambda_dqr_e_2.d,lambda_dqr_e_2.q) + asin(lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d);
+	
+	// Solve for Solution Vectors and Rotate Back out
+	v_dqs_s_star_db_2.q  = (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+	v_dqs_s_star_db_2.q += (lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;  
+	
+	v_dqs_s_star_db_2.d  = -(lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+	v_dqs_s_star_db_2.d +=  (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;
+
+
+	
+	#endif
+
+
+	#ifdef _OVERMOD_CIR_2
+				v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+				v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+		
+			// Saturate to biggest circle that fits in inverter hexagon
+		     if(sqrt(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d) > (v_dc_link_filtered * one_over_sqrt3) ){
+		                		    
+		         overmod_ratio_2 = sqrt(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d) / (v_dc_link_filtered * one_over_sqrt3);
+			         		         
+		         // Scale Back Vector
+		         v_dqs_s_star_2.q = v_dqs_s_star_2.q/overmod_ratio_2;
+		         v_dqs_s_star_2.d = v_dqs_s_star_2.d/overmod_ratio_2;
+		         
+		     }
+		
+			
+		#endif	
+				
+		
+		//This voltage limiting case scales back the commanded voltage vector to the inverter voltage hexagon limits
+		#ifdef _OVERMOD_HEX_2
+				v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+				v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+				
+				v_dqs_s_star_mag = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q + v_dqs_s_star_2.d*v_dqs_s_star_2.d);
+				
+				if(v_dqs_s_star_2.q >=0){
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + two_pi,pi_over_3);}
+				else{
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + pi + two_pi,pi_over_3);}
+				
+				mu = v_dc_link_filtered/(v_dqs_s_star_mag*(1.5f*cosf(alpha) + sin_2pi_by_3*sinf(alpha)));
+				over_mod_flag = 0; 
+				
+				if(mu<1.f)
+				{
+				over_mod_flag = 1;
+				v_dqs_s_star_2.q *= mu;
+				v_dqs_s_star_2.d *= mu;
+				}
+				
+				
+				
+				
+		#endif
+		
+		//This voltage limiting case uses the available voltage to drive the flux lingage down as quickly as possible
+		#ifdef _OVERMOD_FLUX_DECREASE_2
+				v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+				v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+				v_dqs_s_star_mag_2 = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d);
+			
+				if(v_dqs_s_star_2.q >=0){
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + two_pi,pi_over_3);}
+				else{
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + pi + two_pi,pi_over_3);}
+				
+					
+				mu = v_dc_link_filtered/(v_dqs_s_star_mag_2	*(1.5f*cosf(alpha) + sin_2pi_by_3*sinf(alpha)));
+				
+				if(mu<1.f){	
+			//if( v_dqs_s_star_mag_2 > (v_dc_link_filtered * one_over_sqrt3) ){								//Checks to see commanded voltage is within limits
+		         
+		        	//Determines ratio of magnitude of commanded voltage to available voltage 
+					//overmod_ratio_2 = v_dqs_s_star_mag_2 / (v_dc_link_filtered * one_over_sqrt3);		//Defines overmod ratio as the ratio of commanded voltage magnitude to available voltage
+					overmod_decrease_2 = pi_over_6*0.5f;
+					overmod_angle_2 = atan2f(-v_dqs_s_star_2.d,v_dqs_s_star_2.q);
+					overmod_angle_2 += overmod_decrease_2; //pi_over_2;//4*pi/12;
+			        //if(overmod_ratio_2 > 1){
+			        	
+			        /*if(overmod_angle_2 >= pi_over_6){
+			            mu = v_dc_link_filtered/(v_dqs_s_star_mag_2	*(1.5f*cosf(alpha-overmod_decrease_2) + sin_2pi_by_3*sinf(alpha-overmod_decrease_2)));
+			        }    
+			        if(overmod_angle_2 < pi_over_6){
+			            mu = v_dc_link_filtered/(v_dqs_s_star_mag_2	*(1.5f*cosf(alpha+overmod_decrease_2) + sin_2pi_by_3*sinf(alpha+overmod_decrease_2)));
+			        } */    													//Drives the stator flux down quickly
+			        	mu = v_dc_link_filtered/(v_dqs_s_star_mag_2	*(1.5f*fabs(cosf(alpha-pi_over_6*0.5f)) + sin_2pi_by_3*fabs(sinf(alpha-pi_over_6*0.5f))));
+			        	v_dqs_s_star_2.q = v_dqs_s_star_mag_2*cosf(overmod_angle_2)*mu;  ///overmod_ratio_2;  	//v_dqs_s_star_2.q/overmod_ratio_2; 		
+		    	    	v_dqs_s_star_2.d = v_dqs_s_star_mag_2*(-sinf(overmod_angle_2))*mu; ///overmod_ratio_2; //v_dqs_s_star_2.d/overmod_ratio_2*sqrt3_over_2;
+		    	    	
+		    	    	//Calculate Commanded Flux for the applied voltage vectors
+		    	    	lambda_s.q_k0 = lambda_dqs_s_hat_kp1_2.q;
+						lambda_s.d_k0 = lambda_dqs_s_hat_kp1_2.d;						        
+					   	lambda_s.q_k1 = lambda_s.q_k0 + v_dqs_s_star_2.q*t_obsr_2;
+					  	lambda_s.d_k1 = lambda_s.d_k0 + v_dqs_s_star_2.d*t_obsr_2;
+
+		    	    	lambda_dqs_e_2_k1.d = sqrtf(lambda_s.q_k1*lambda_s.q_k1+ lambda_s.d_k1*lambda_s.d_k1);
+						lambda_s_star_cmd_2 = lambda_dqs_e_2_k1.d;
+		        		//lambda_s_star_cmd_2 = lambda_dqs_e_2.d;											//Assigns the previous value of the flux linkage to the flux command (to avoid significant oscillations)
+		    	    //} 
+		    	   
+				
+			}
+		#endif
+		
+		#ifdef _OVERMOD_FLUX_DECREASE_TEST_2
+				//v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+				//v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+				v_dqs_s_star_mag_2 = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d);
+				
+			
+			/*	if(v_dqs_s_star_2.q >=0){
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + two_pi,pi_over_3);}
+				else{
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + pi + two_pi,pi_over_3);}
+				
+				mu = v_dc_link_filtered/(v_dqs_s_star_mag_2*(1.5f*cosf(alpha) + sin_2pi_by_3*sinf(alpha)));
+				
+				if(mu<1.0f){*/
+				if( v_dqs_s_star_mag_2 > (v_dc_link_filtered * one_over_sqrt3) ){								//Checks to see commanded voltage is within limits
+		         
+		        	//Determines ratio of magnitude of commanded voltage to available voltage 
+					//overmod_ratio_2 = v_dqs_s_star_mag_2 / (v_dc_link_filtered * one_over_sqrt3);		//Defines overmod ratio as the ratio of commanded voltage magnitude to available voltage
+							
+			        
+			        lambda_s_star_cmd_2 -= 0.002f;											
+		    	     
+				
+				}
+		#endif
+		
+				
+		//This voltage limiting case uses the overmodulation ratio to maintain a balance of decreasing flux and torque production
+		#ifdef _OVERMOD_FLUX_PROP_2
+			v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+			v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+			v_dqs_s_star_mag_2 = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d);  //Defines the magnitude of the commanded voltage vectors
+		
+			if(v_dqs_s_star_2.q >=0){
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + two_pi,pi_over_3);}
+			else{
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + pi + two_pi,pi_over_3);}
+				
+					
+				mu = v_dc_link_filtered/(v_dqs_s_star_mag_2	*(1.5f*cosf(alpha) + sin_2pi_by_3*sinf(alpha)));
+				
+				if(mu<1.f){	
+				//if( v_dqs_s_star_mag_2 > (v_dc_link_filtered * one_over_sqrt3) ){						//Checks to see commanded voltage is within limits
+		         
+		        	//Determines ratio of magnitude of commanded voltage to available voltage 
+					//overmod_ratio_2 = v_dqs_s_star_mag_2 / (v_dc_link_filtered * one_over_sqrt3);		//Defines overmod ratio as the ratio of commanded voltage magnitude to available voltage
+					overmod_angle_2 = atan2f(-v_dqs_s_star_2.d,v_dqs_s_star_2.q);						//Determines the angle of the commanded voltage vector
+					overmod_angle_add_2 = (1/mu-1.0f)*overmod_angle_gain_2;					//Determines the angle that will be added to the origional vector angle in order to drive flux down
+					
+					
+					//if(overmod_ratio_2 > 1){
+			        	overmod_angle_2 += overmod_angle_add_2;											//Adds the previously determined angle to the original vector angle to decrease flux linkage
+		        		mu_angle_2 = alpha+overmod_angle_add_2;
+			        	if(mu_angle_2 > pi_over_3){
+		        		    mu_angle_2 -= pi_over_3;
+		        		}
+		        		if(mu_angle_2 < 0){
+		        		 	mu_angle_2 += pi_over_3;   
+		        		}
+			        	
+			        	mu = v_dc_link_filtered/(v_dqs_s_star_mag_2	*(1.5f*cosf(mu_angle_2) + sin_2pi_by_3*sinf(mu_angle_2)));	        	
+			        	v_dqs_s_star_2.q = v_dqs_s_star_mag_2*cosf(overmod_angle_2)*mu;///overmod_ratio_2;   	//Rotates the commanded q axis voltage by the specified angle and scales it back to the voltage limit	
+		    	    	v_dqs_s_star_2.d = v_dqs_s_star_mag_2*(-sinf(overmod_angle_2))*mu;///overmod_ratio_2; //Rotates the commanded d axis voltage by the specified angle and scales it back to the voltage limit
+
+		    	    	//Calculate Commanded Flux for the applied voltage vectors
+		    	    	lambda_s.q_k0 = lambda_dqs_s_hat_kp1_2.q;
+						lambda_s.d_k0 = lambda_dqs_s_hat_kp1_2.d;						        
+					   	lambda_s.q_k1 = lambda_s.q_k0 + v_dqs_s_star_2.q*t_obsr_2;
+					  	lambda_s.d_k1 = lambda_s.d_k0 + v_dqs_s_star_2.d*t_obsr_2;
+
+		    	    	lambda_dqs_e_2_k1.d = sqrtf(lambda_s.q_k1*lambda_s.q_k1+ lambda_s.d_k1*lambda_s.d_k1);
+						lambda_s_star_cmd_2 = lambda_dqs_e_2_k1.d;
+		    	    	
+						//lambda_s_star_cmd_2 = lambda_dqs_e_2.d;											//Assigns the previous value of the flux linkage to the flux command (to avoid significant oscillations)
+		    	   		//tem_hat_om_kp1_2 = 3*(lambda_s.d_k1*i_dqs_s_2.q - lambda_s.q_k1*i_dqs_s_2.d);
+		    	   	//} 
+		    	   	
+				}
+
+
+		/*
+		if( test2.q < one_third*v_dc_link_filtered && test2.q > -one_third*v_dc_link_filtered){
+		    v_dqs_s_star_2.q = test2.q;
+		    if(test2.q > 0){
+		        v_dqs_s_star_2.d = 
+		    } else {
+		    	v_dqs_s_star_2.d = 
+		    }
+			v_dqs_s_star_2.d = m_2*v_dqs_s_star_2.q+b_2;
+		}
+	*/	
+	/*	
+		if( test3.q < one_third*v_dc_link_filtered && test3.q > -one_third*v_dc_link_filtered){
+		    v_dqs_s_star_2.q = test3.q;
+			v_dqs_s_star_2.d = m_2*v_dqs_s_star_2.q+b_2;
+		}
+	*/	
+
+		    	   	
+							  
+			//	}
+				
+			/*	if((lambda_s_star_cmd_2 < lambda_s_star_cmd_pre_2) && (v_dqs_s_star_mag_2 < (v_dc_link_filtered * one_over_sqrt3))){
+					 
+					    lambda_s_star_cmd_2 += 0.0001f;
+					       
+				}*/		
+		#endif
+						
+				
+		//CAR1: This voltage limiting case uses the next corner of the hexagon
+		#ifdef _OVERMOD_SIXSTEP_2
+			v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+			v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+			v_dqs_s_star_mag_2 = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d);  //Defines the magnitude of the commanded voltage vectors
+			
+		
+				if( v_dqs_s_star_mag_2 > (v_dc_link_filtered * one_over_sqrt3) ){						//Checks to see commanded voltage is within limits
+					
+					// Nearest SIXSTEP Solution 1
+					// Calculate angle of the commanded voltage vector
+					alpha = atan2f(-v_dqs_s_star_2.d,v_dqs_s_star_2.q);
+	
+					
+					//first sector
+					if (alpha >= -pi_over_6 && alpha < pi_over_6)
+					{
+				 		v_dqs_s_star_2.q = 0.6*v_dc_link_filtered;
+				 		v_dqs_s_star_2.d = 0;  
+					}
+					
+					//second sector
+					if (alpha >= pi_over_6 && alpha < pi_over_2)
+					{
+					 	v_dqs_s_star_2.q = one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered*0.9;  
+					}
+					
+					//third sector
+					if (alpha >= pi_over_2 && alpha <= five_pi_over_6)
+					{
+					 	v_dqs_s_star_2.q = -one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered*0.9;  
+					}
+					
+					//fourth sector
+					if (alpha > five_pi_over_6 || alpha < -five_pi_over_6)
+					{
+					 	v_dqs_s_star_2.q = -0.6*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = 0; 
+					}
+					
+					//fifth sector
+					if (alpha <= -pi_over_2 && alpha >= -five_pi_over_6)
+					{
+					 	v_dqs_s_star_2.q = -one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered*0.9;
+					}
+					
+					//sixth sector	
+					if (alpha > -pi_over_2 && alpha <= -pi_over_6)
+					{
+				 		v_dqs_s_star_2.q = one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered*0.9;  
+					}	  		
+				}			  	
+			  
+									
+		#endif
+
+		
+		//CAR2: This voltage limiting case maximizes the produced torque for every time step
+		#ifdef _OVERMOD_PERPENDICULAR_2
+			v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+			v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+			v_dqs_s_star_mag_2 = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d);  //Defines the magnitude of the commanded voltage vectors
+			
+		
+				if( v_dqs_s_star_mag_2 > (v_dc_link_filtered * one_over_sqrt3) ){							//Checks if commanded voltage is outside the limits
+					
+			
+					// Calculate the voltage vector perpendicular to the torque line				
+					z_d_2 = 0;
+					z_q_2 = 0;
+					z_d_2 = (-m_2*b_2)/(m_2*m_2 + 1);
+					z_q_2 = (b_2)/(m_2*m_2 + 1);
+					
+					//Rotate Back out to stationary reference frame
+					v_dqs_s_star_2.q  = (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+					v_dqs_s_star_2.q += (lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;  
+	
+					v_dqs_s_star_2.d  = -(lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+					v_dqs_s_star_2.d +=  (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;
+					
+					//Calculate angle of the commanded voltage vector
+					alpha = atan2f(-v_dqs_s_star_2.d,v_dqs_s_star_2.q);
+					
+					//choose next vertex of the voltage hexagon
+					//first sector
+					if (alpha >= -pi_over_6 && alpha < pi_over_6)
+					{
+				 		v_dqs_s_star_2.q = 0.6*v_dc_link_filtered;
+				 		v_dqs_s_star_2.d = 0;  
+					}
+					
+					//second sector
+					if (alpha >= pi_over_6 && alpha < pi_over_2)
+					{
+					 	v_dqs_s_star_2.q = one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered*0.9;  
+					}
+					
+					//third sector
+					if (alpha >= pi_over_2 && alpha <= five_pi_over_6)
+					{
+					 	v_dqs_s_star_2.q = -one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered*0.9;  
+					}
+					
+					//fourth sector
+					if (alpha > five_pi_over_6 || alpha < -five_pi_over_6)
+					{
+					 	v_dqs_s_star_2.q = -0.6*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = 0; 
+					}
+					
+					//fifth sector
+					if (alpha <= -pi_over_2 && alpha >= -five_pi_over_6)
+					{
+					 	v_dqs_s_star_2.q = -one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered*0.9;
+					}
+					
+					//sixth sector	
+					if (alpha > -pi_over_2 && alpha <= -pi_over_6)
+					{
+				 		v_dqs_s_star_2.q = one_third*v_dc_link_filtered*0.9;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered*0.9;  
+					}
+
+		    	   	//Calculate Commanded Flux for the applied voltage vectors
+		    	   	lambda_s.q_k0 = lambda_dqs_s_hat_kp1_2.q;
+					lambda_s.d_k0 = lambda_dqs_s_hat_kp1_2.d;						        
+				   	lambda_s.q_k1 = lambda_s.q_k0 + v_dqs_s_star_2.q*t_obsr_2;
+				  	lambda_s.d_k1 = lambda_s.d_k0 + v_dqs_s_star_2.d*t_obsr_2;
+
+		    	   	lambda_dqs_e_2_k1.d = sqrtf(lambda_s.q_k1*lambda_s.q_k1+ lambda_s.d_k1*lambda_s.d_k1);
+					lambda_s_star_cmd_2 = lambda_dqs_e_2_k1.d;
+				} 
+									
+		#endif
+		
+		#ifdef _OVERMOD_PERPENDICULAR_TEST_2
+			v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+			v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+			v_dqs_s_star_mag_2 = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d);  //Defines the magnitude of the commanded voltage vectors
+			
+			/*if(v_dqs_s_star_2.q >=0){
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + two_pi,pi_over_3);}
+			else{
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + pi + two_pi,pi_over_3);}
+				
+					
+				mu = v_dc_link_filtered/(v_dqs_s_star_mag_2	*(1.5f*cosf(alpha) + sin_2pi_by_3*sinf(alpha)));
+				
+				if(mu<1.f){	*/
+				if( v_dqs_s_star_mag_2 > (v_dc_link_filtered * one_over_sqrt3) ){							//Checks if commanded voltage is outside the limits
+					
+			
+					// Calculate the voltage vector perpendicular to the torque line				
+					z_d_2 = 0;
+					z_q_2 = 0;
+					z_d_2 = (-m_2*b_2)/(m_2*m_2 + 1);
+					z_q_2 = (b_2)/(m_2*m_2 + 1);
+					
+					//Rotate Back out to stationary reference frame
+					v_dqs_s_star_2.q  = (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+					v_dqs_s_star_2.q += (lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;  
+	
+					v_dqs_s_star_2.d  = -(lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+					v_dqs_s_star_2.d +=  (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;
+					
+					v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+					v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+					
+					//Calculate angle of the commanded voltage vector
+					alpha = atan2f(-v_dqs_s_star_2.d,v_dqs_s_star_2.q);
+					//overmod_angle_2 = atan2f(-v_dqs_s_star_2.d,v_dqs_s_star_2.q);						//Determines the angle of the commanded voltage vector
+					overmod_ratio_2 = v_dqs_s_star_mag_2/(v_dc_link_filtered * one_over_sqrt3);
+					overmod_angle_add_2 = (overmod_ratio_2-1.0f)*overmod_angle_gain_2;					//Determines the angle that will be added to the origional vector angle in order to drive flux down
+					overmod_angle_2 = alpha + overmod_angle_add_2;
+					
+					
+					//v_dqs_s_star_2.q = v_dqs_s_star_2.q/overmod_ratio_2;
+					//v_dqs_s_star_2.d = v_dqs_s_star_2.d/overmod_ratio_2;
+					
+					v_dqs_s_star_2.q = v_dqs_s_star_mag_2*cosf(overmod_angle_2)/overmod_ratio_2;   	//Rotates the commanded q axis voltage by the specified angle and scales it back to the voltage limit	
+		    	    v_dqs_s_star_2.d = v_dqs_s_star_mag_2*(-sinf(overmod_angle_2))/overmod_ratio_2; //Rotates the commanded d axis voltage by the specified angle and scales it back to the voltage limit
+					
+					
+					//choose next vertex of the voltage hexagon
+					
+					alpha += 0.5f*pi_over_6; 
+					
+					//first sector
+					if (alpha >= 11*pi_over_6 && alpha < 0)
+					{
+				 		v_dqs_s_star_2.q = 0.6*v_dc_link_filtered;
+				 		v_dqs_s_star_2.d = 0;  
+					}
+					
+					//second sector
+					if (alpha >= pi_over_6 && alpha < pi_over_3)
+					{
+					 	v_dqs_s_star_2.q = one_third*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered;  
+					}
+					
+					//third sector
+					if (alpha >= pi_over_2 && alpha <= two_pi_over_3)
+					{
+					 	v_dqs_s_star_2.q = -one_third*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered;  
+					}
+					
+					//fourth sector
+					if (alpha > five_pi_over_6 && alpha < pi)
+					{
+					 	v_dqs_s_star_2.q = -0.6*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = 0; 
+					}
+					
+					//fifth sector
+					if (alpha <= 7*pi_over_6 && alpha >= 4*pi_over_3)
+					{
+					 	v_dqs_s_star_2.q = -one_third*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered;
+					}
+					
+					//sixth sector	
+					if (alpha > 9*pi_over_6 && alpha <= 5*pi_over_3)
+					{
+				 		v_dqs_s_star_2.q = one_third*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered;  
+					}
+					
+					/*//first sector
+					if (alpha >= 0 && alpha < pi_over_3)
+					{
+				 		v_dqs_s_star_2.q = one_third*v_dc_link_filtered*0.6;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered*0.6;  
+					}
+					
+					//second sector
+					if (alpha >= pi_over_3 && alpha < two_pi_over_3)
+					{
+					    v_dqs_s_star_2.q = -one_third*v_dc_link_filtered*0.6;
+					 	v_dqs_s_star_2.d = -one_over_sqrt3*v_dc_link_filtered*0.6;	     
+					}
+					
+					//third sector
+					if (alpha >= two_pi_over_3 && alpha < pi)
+					{
+					 	v_dqs_s_star_2.q = -0.6*v_dc_link_filtered;
+					 	v_dqs_s_star_2.d = 0; 
+					       
+					}
+					
+					//fourth sector
+					if (alpha >= pi && alpha < 4*pi_over_3)
+					{
+					 	v_dqs_s_star_2.q = -one_third*v_dc_link_filtered*0.6;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered*0.6;
+					    
+					}
+					
+					//fifth sector
+					if (alpha >= 4*pi_over_3 && alpha < 5*pi_over_3)
+					{
+					 	v_dqs_s_star_2.q = one_third*v_dc_link_filtered*0.6;
+					 	v_dqs_s_star_2.d = one_over_sqrt3*v_dc_link_filtered*0.6;
+					    
+					}
+					
+					//sixth sector	
+					if (alpha >= 5*pi_over_3 && alpha < two_pi)
+					{
+				 		v_dqs_s_star_2.q = 0.6*v_dc_link_filtered;
+				 		v_dqs_s_star_2.d = 0;  
+					    
+					} */
+
+		    	   	//Calculate Commanded Flux for the applied voltage vectors
+		    	   	lambda_s.q_k0 = lambda_dqs_s_hat_kp1_2.q;
+					lambda_s.d_k0 = lambda_dqs_s_hat_kp1_2.d;						        
+				   	lambda_s.q_k1 = lambda_s.q_k0 + v_dqs_s_star_2.q*t_obsr_2;
+				  	lambda_s.d_k1 = lambda_s.d_k0 + v_dqs_s_star_2.d*t_obsr_2;
+
+		    	   	lambda_dqs_e_2_k1.d = sqrtf(lambda_s.q_k1*lambda_s.q_k1+ lambda_s.d_k1*lambda_s.d_k1);
+					lambda_s_star_cmd_2 = lambda_dqs_e_2_k1.d;
+				} 
+									
+		#endif
+		
+		//CAR3: MPC
+		#ifdef _OVERMOD_MPC_2
+		
+		//	counter += 1;
+			//if(counter > 3){
+			//	counter = 0;
+			//}
+			
+			//if(counter == 0)
+			//{
+			 
+			v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+			v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+			v_dqs_s_star_mag_2 = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q+v_dqs_s_star_2.d*v_dqs_s_star_2.d);  //Defines the magnitude of the commanded voltage vectors
+			
+	
+				if( v_dqs_s_star_mag_2 > (v_dc_link_filtered * one_over_sqrt3) ){						//Checks to see commanded voltage is within limits
+
+					overmod_ratio_2 = v_dqs_s_star_mag_2 / (v_dc_link_filtered * one_over_sqrt3);		//Defines overmod ratio as the ratio of commanded voltage magnitude to available voltage
+					//overmod_angle_2 = atan2f(-v_dqs_s_star_2.d,v_dqs_s_star_2.q);						//Determines the angle of the commanded voltage vector
+					//overmod_angle_add_2 = (overmod_ratio_2-1.0f)*overmod_angle_gain_2;					//Determines the angle that will be added to the origional vector angle in order to drive flux down
+					//overmod_angle_add_2 = 4*pi/12;
+
+		        	//overmod_angle_2 += overmod_angle_add_2;											//Adds the previously determined angle to the original vector angle to decrease flux linkage
+				
+		        	
+		        	
+		        	lambda_s_angle = atan2f(-lambda_dqs_s_hat_kp1_2.d,lambda_dqs_s_hat_kp1_2.q);
+		        	//if(counter == 1){
+		        	overmod_angle_2 = lambda_s_angle + 0.605*pi;
+		        	//}
+		        	//if(counter == 2){
+		        	//overmod_angle_2 = lambda_s_angle + 0.589*pi;
+		        	//}
+		        	//if(counter > 2){
+		        	//overmod_angle_2 = lambda_s_angle + 0.578*pi;
+		        	//}
+
+		        			        	      	
+		        			    
+					//Possible voltage vectors
+					for(int i=0; i<7; i++){
+						voltage[i].q = v_dc_link_filtered  * one_over_sqrt3 */* one_third */ cosf((i/4)*overmod_angle_2 /*(i/7)*(pi/100)*/);		//cosf((i/7)*two_pi);
+						voltage[i].d = -v_dc_link_filtered * one_over_sqrt3 * /* one_third */ sinf((i/4)*overmod_angle_2 /*(i/7)*(pi/100)*/);		//sinf((i/7)*two_pi);
+					}
+					
+					//set initial torque and flux estimations
+					tem.best = 0;
+					tem.k0 = tem_hat_kp1_2;	
+					lambda_s.q_k0 = lambda_dqs_s_hat_kp1_2.q;
+					lambda_s.d_k0 = lambda_dqs_s_hat_kp1_2.d;						        
+					    						        
+					lambda_r.q_k0 = lambda_dqr_s_hat_kp1_2.q;
+					lambda_r.d_k0 = lambda_dqr_s_hat_kp1_2.d;
+					  
+					//calculate all possible variations					
+					for(int i=0; i<7; i++){				   
+						for(int j=0; j<7; j++){
+						    //for(int k=0; k<3; k++){
+						        
+						    	//first step
+						        tem.k1 = tem.k0*(1-c_t_hat_2*t_obsr_2) + c_3_obsr_2*t_obsr_2*(voltage[i].q*lambda_r.d_k0 - voltage[i].d*lambda_r.q_k0 - omega_l_hat_kp1_1*(lambda_s.q_k0*lambda_r.q_k0 + lambda_s.d_k0*lambda_r.d_k0));
+						    	
+						    	lambda_s.q_k1 = lambda_s.q_k0 + voltage[i].q*t_obsr_2;
+						    	lambda_s.d_k1 = lambda_s.d_k0 + voltage[i].d*t_obsr_2;
+						    	
+						    	lambda_r.q_k1 = lambda_r.q_k0 + c_t_hat_3*lambda_s.q_k0*t_obsr_2 - c_t_hat_4*lambda_r.q_k0*t_obsr_2 + omega_l_hat_kp1_1*lambda_r.d_k0*t_obsr_2;
+						    	lambda_r.d_k1 = lambda_r.d_k0 + c_t_hat_3*lambda_s.d_k0*t_obsr_2 - c_t_hat_4*lambda_r.d_k0*t_obsr_2 - omega_l_hat_kp1_1*lambda_r.q_k0*t_obsr_2;
+						    	
+						    	//second step
+								tem.k2 = tem.k1*(1-c_t_hat_2*t_obsr_2) + c_3_obsr_2*t_obsr_2*(voltage[j].q*lambda_r.d_k1 - voltage[j].d*lambda_r.q_k1 - omega_l_hat_kp1_1*(lambda_s.q_k1*lambda_r.q_k1 + lambda_s.d_k1*lambda_r.d_k1));
+								
+/*								lambda_s.q_k2 = lambda_s.q_k1 + voltage[j].q*t_obsr_2;
+						    	lambda_s.d_k2 = lambda_s.d_k1 + voltage[j].d*t_obsr_2;
+						    	
+						    	lambda_r.q_k2 = lambda_r.q_k1 + c_t_hat_3*lambda_s.q_k1*t_obsr_2 - c_t_hat_4*lambda_r.q_k1*t_obsr_2 + omega_l_hat_kp1_1*lambda_r.d_k1*t_obsr_2;
+						    	lambda_r.d_k2 = lambda_r.d_k1 + c_t_hat_3*lambda_s.d_k1*t_obsr_2 - c_t_hat_4*lambda_r.d_k1*t_obsr_2 + omega_l_hat_kp1_1*lambda_r.q_k1*t_obsr_2;
+						    	
+						    	//third step
+								tem.k3 = tem.k2*(1-c_t_hat_2*t_obsr_2) + c_3_obsr_2*t_obsr_2*(voltage[k].q*lambda_r.d_k2 - voltage[k].d*lambda_r.q_k2 - omega_l_hat_kp1_1*(lambda_s.q_k2*lambda_r.q_k2 + lambda_s.d_k2*lambda_r.d_k2));
+								
+								lambda_s.q_k3 = lambda_s.q_k2 + voltage[k].q*t_obsr_2;
+						    	lambda_s.d_k3 = lambda_s.d_k2 + voltage[k].d*t_obsr_2;
+						    	
+						    	lambda_r.q_k3 = lambda_r.q_k2 + c_t_hat_3*lambda_s.q_k2*t_obsr_2 - c_t_hat_4*lambda_r.q_k2*t_obsr_2 + omega_l_hat_kp1_1*lambda_r.d_k2*t_obsr_2;
+						    	lambda_r.d_k3 = lambda_r.d_k2 + c_t_hat_3*lambda_s.d_k2*t_obsr_2 - c_t_hat_4*lambda_r.d_k2*t_obsr_2 + omega_l_hat_kp1_1*lambda_r.q_k2*t_obsr_2;
+*/						    	
+						    	if(tem.k2 > tem.best){
+						    		tem.best = tem.k2;
+						    		tem.v1 = i;
+						    		tem.v2 = j;
+						    		//tem.v3 = k;
+						    	}
+						    						    	
+						    } 
+						//}
+					}
+					
+					v_dqs_s_star_2.q = voltage[tem.v1].q;
+					v_dqs_s_star_2.d = voltage[tem.v1].d;
+					lambda_dqs_e_2_k1.d = sqrtf(lambda_s.q_k1*lambda_s.q_k1 + lambda_s.d_k1*lambda_s.d_k1);
+					lambda_s_star_cmd_2 = lambda_dqs_e_2_k1.d;
+
+					
+				} 
+									
+		#endif // end _OVERMOD_MPC_2
+		
+
+		
+		
+		// Trajectory Based Overmodulation
+		#ifdef _TRAJ_OVM_2
+		
+			b_2_pre = b_2;
+			test_5 = 0;
+			v_dqs_s_star_pre_2.q = v_dqs_s_star_2.q;
+			v_dqs_s_star_pre_2.d = v_dqs_s_star_2.d;
+			
+			
+				
+			v_dqs_s_star_mag = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q + v_dqs_s_star_2.d*v_dqs_s_star_2.d);
+			
+			lambda_s_star_ovm_2 = lambda_s_star_2;
+			tem_star_ovm_2 = tem_star_2;
+			
+			if(v_dqs_s_star_2.q >=0){
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + two_pi,pi_over_3);
+				}
+			else{
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + pi + two_pi,pi_over_3);
+				}
+				
+			mu = v_dc_link_filtered/(v_dqs_s_star_mag*(1.5f*cosf(alpha) + sin_2pi_by_3*sinf(alpha)));
+				
+			if(mu<1.0f || ovm_flag == 1){
+
+			    test_5 = 1;
+			    ovm_flag = 1;
+			    tem_hat_ovm_2 = tem_hat_kp1_2;
+				lambda_s_ovm_2 = lambda_dqs_e_2.d;
+				
+				
+				
+			    steps_ovm = ceil(1/(fabs(mu)));
+			    
+			   //if(tem_star_2 < 0){
+			     
+			     //   steps_ovm = steps_ovm*0.7f;
+			           
+			   // }
+			    
+			    
+			    //Slewing
+			    
+			    //if(ovm_slew_flag == 0){
+					lambda_s_star_ovm_slew_2 = (lambda_s_star_cmd_2 - lambda_s_ovm_2)/(steps_ovm);
+					tem_star_ovm_slew_2 = (tem_star_2 - tem_hat_kp1_2)/(steps_ovm);
+					ovm_slew_flag = 1;
+			    //}
+				
+			    //if((lambda_s_star_ovm_2 <= 0.995*lambda_dqs_e_2.d) || (lambda_s_star_ovm_2 >= 1.005*lambda_dqs_e_2.d)){
+					lambda_s_star_ovm_2 = lambda_s_ovm_2 + lambda_s_star_ovm_slew_2;
+			    //}
+				
+				
+				//if(ovm_counter == 25){
+				//if((tem_star_ovm_2 <= 0.995*tem_star_2) || (tem_star_ovm_2 >= 1.005*tem_star_2)){
+				    
+				    tem_star_ovm_2 = tem_hat_kp1_2 + tem_star_ovm_slew_2;
+				
+				//}
+				//ovm_counter = 0;
+				//}
+				//else {
+				//tem_star_ovm_2 = tem_hat_kp1_2;
+				//ovm_counter += 1;
+				//}
+				
+				
+				//if(((fabs(tem_star_ovm_2) >= 0.98*fabs(tem_star_2)) && (fabs(tem_star_ovm_2) <= 1.02*fabs(tem_star_2))) && ((lambda_s_star_ovm_2 >= 0.99*lambda_dqs_e_2.d) && (lambda_s_star_ovm_2 <= 1.01*lambda_dqs_e_2.d))){
+				    
+				 ovm_flag = 0;   
+				 ovm_slew_flag = 0;
+			
+				//} 
+				
+				//Re-run DB-DTFC Code
+				
+				// Calculate Delta Torque Term
+				delta_tem_ovm_2 = tem_star_ovm_2 - tem_hat_ovm_2;
+	
+				// Calculate Intercept of Torque Line
+				b_2  = (c_t_hat_2*t_obsr_2*tem_hat_ovm_2+delta_tem_ovm_2)/(lambda_dqr_e_2.d*c_3_obsr_2);
+				b_2 += omega_l_hat_kp1_1*pole_pairs*t_obsr_2*lambda_dqs_e_2.d;
+
+				z_d_2 = -(2*m_2*b_2 + 2*lambda_dqs_e_2.d);   																//Calculates -b term of quadratic formula
+	
+				root_1_2 = z_d_2*z_d_2;																						//Calculates b squared term under the radical, poorly named
+				root_2_2 = 4*(m_2*m_2+1)*(b_2*b_2-(lambda_s_star_ovm_2*lambda_s_star_ovm_2-lambda_dqs_e_2.d*lambda_dqs_e_2.d));		//Calculates 4ac term under the radical, poorly named
+	
+				if(root_1_2 >= root_2_2){																					//Makes sure quad equations produces real result
+	    
+	 			   z_d_2 = z_d_2 + sqrtf(root_1_2-root_2_2);																//Calculates roots of quadratic equation
+	   			   z_d_2 = z_d_2 / (2.0f*(m_2*m_2+1.f));																	//Finishes calculation of quadratic formula
+				   z_q_2 = m_2*z_d_2+b_2;																					//Calculates other component of vector, y = mx+b
+				   //test_5 = 0.0f;			
+
+				}
+				else{
+	    
+	   				// No Feasible Solution Possible (Could use some work)
+	    			z_d_2 =  b_2/2.0f;
+	    			z_q_2 = -b_2/(2.0f*m_2);
+	    			//test_5 = 5.0f;
+	    
+				}
+	
+				// Solve for Solution Vectors and Rotate Back out
+				v_dqs_s_star_db_2.q  = (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+				v_dqs_s_star_db_2.q += (lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;  
+	
+				v_dqs_s_star_db_2.d  = -(lambda_dqs_s_hat_kp1_2.q / lambda_dqs_e_2.d )*z_q_2/t_obsr_2;
+				v_dqs_s_star_db_2.d +=  (lambda_dqs_s_hat_kp1_2.d / lambda_dqs_e_2.d )*z_d_2/t_obsr_2;	
+			
+				v_dqs_s_star_2.q = 0.0f;
+				v_dqs_s_star_2.d = 0.0f;
+
+	
+				if(torq_mod_select == 1.0f ){
+					v_dqs_s_star_2.q = v_dqs_s_star_foc_2.q;
+					v_dqs_s_star_2.d = v_dqs_s_star_foc_2.d;
+				}
+	
+				if(torq_mod_select == 2.0f ){
+					v_dqs_s_star_2.q = v_dqs_s_star_db_2.q;
+					v_dqs_s_star_2.d = v_dqs_s_star_db_2.d;
+				}
+	
+				if(torq_mod_select == 3.0f ){
+					v_dqs_s_star_2.q = v_dqs_s_star_vs_2.q;
+					v_dqs_s_star_2.d = v_dqs_s_star_vs_2.d;
+				}
+	
+
+				
+				v_dqs_s_star_mag = sqrtf(v_dqs_s_star_2.q*v_dqs_s_star_2.q + v_dqs_s_star_2.d*v_dqs_s_star_2.d);
+				
+				if(v_dqs_s_star_2.q >=0){
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + two_pi,pi_over_3);}
+				else{
+				alpha = fmodf(atanf(-v_dqs_s_star_2.d/v_dqs_s_star_2.q) + pi + two_pi,pi_over_3);}
+				
+				mu = v_dc_link_filtered/(v_dqs_s_star_mag*(1.5f*cosf(alpha) + sin_2pi_by_3*sinf(alpha)));
+				
+				if(mu<1.f)
+				{
+
+				v_dqs_s_star_2.q *= mu;
+				v_dqs_s_star_2.d *= mu;
+				}
+				
+				
+				// If not using FOC camp current reg integrators from windup
+				if(torq_mod_select != 1.0f ){
+					i_dqs_e_err_int_2.q = 0.0f;
+	   				i_dqs_e_err_int_2.d = 0.0f;
+				}
+				
+				
+					
+			}
+		
+	
+		#endif
+		// end _TRAJ_OVM_2
+		
+		
+		//Calculate torque at the next time step
+	/*	tem.k0 = tem_hat_kp1_2;
+		
+		lambda_s.q_k0 = lambda_dqs_s_hat_kp1_2.q;
+		lambda_s.d_k0 = lambda_dqs_s_hat_kp1_2.d;						        
+		
+		lambda_s.q_k1 = lambda_s.q_k0 + v_dqs_s_star_2.q*t_obsr_2;
+		lambda_s.d_k1 = lambda_s.d_k0 + v_dqs_s_star_2.d*t_obsr_2;			    						        
+		
+		lambda_r.q_k0 = lambda_dqr_s_hat_kp1_2.q;
+		lambda_r.d_k0 = lambda_dqr_s_hat_kp1_2.d;
+		
+		lambda_r.q_k1 = lambda_r.q_k0 + c_t_hat_3*lambda_s.q_k0*t_obsr_2 - c_t_hat_4*lambda_r.q_k0*t_obsr_2 + omega_l_hat_kp1_1*lambda_r.d_k0*t_obsr_2;
+		lambda_r.d_k1 = lambda_r.d_k0 + c_t_hat_3*lambda_s.d_k0*t_obsr_2 - c_t_hat_4*lambda_r.d_k0*t_obsr_2 - omega_l_hat_kp1_1*lambda_r.q_k0*t_obsr_2;
+	
+		tem.k1 = c_3_obsr_2*(lambda_s.q_k1*lambda_r.d_k1 - lambda_s.d_k1*lambda_r.q_k1);
+		//tem.k1 = tem.k0*(1 - c_t_hat_2*t_obsr_2) + c_3_obsr_2*t_obsr_2*(v_dqs_s_star_2.q*lambda_r.d_k0 - v_dqs_s_star_2.d*lambda_r.q_k0 - omega_l_hat_kp1_1*(lambda_s.q_k0*lambda_r.q_k0 + lambda_s.d_k0*lambda_r.d_k0));
+	
+	*/
+		
+		
+
+	#ifdef _Lagrange_Opt
+		
+		//	w_e_hat	= (v_dqs_e_star_2.q - rs_hat_2*i_dqs_e_2.q)/ lambda_dqs_e_2.d; //Excitation estimate
+			w_e_hat	= (v_dqs_e_star_2.q)/ lambda_dqs_e_2.d; //Excitation estimate
+			w_slip = w_e_hat-2*omega_l_hat_kp1_1;
+		
+			rfe_hat_2 = 1667 + (omega_l_hat_kp1_1/pi)/0.206; 
+		
+		
+			A2	=	X1*lambda_dqr_e_2.q  + X2*w_slip*lambda_dqr_e_2.d  + X3*lambda_dqs_e_2.q;
+			B2	=	X1*lambda_dqr_e_2.d  + X2*w_slip*lambda_dqr_e_2.q  + X3*lambda_dqs_e_2.d;
+			Co2	=	X4*lambda_dqr_e_2.q  + X5*w_slip*lambda_dqr_e_2.d  + X6*lambda_dqs_e_2.q;
+			D2	=	X4*lambda_dqr_e_2.d  + X5*w_slip*lambda_dqr_e_2.q  + X6*lambda_dqs_e_2.d;
+		
+		
+			//	lambda_dqs_e_opt_kp1_2.d = -((A1*B2*rs_hat_2 + Co1*D2*rr_hat_2)*(lambda_dqr_e_2.d*lambda_dqr_e_2.d) + (A1*A2*rs_hat_2 + Co1*Co2*rr_hat_2)*(lambda_dqr_e_2.d*lambda_dqr_e_2.q)) / ((lambda_dqr_e_2.q*lambda_dqr_e_2.q + lambda_dqr_e_2.d*lambda_dqr_e_2.d)*(rs_hat_2*A1*A1 + rr_hat_2*Co1*Co1 + w_bar*w_bar/rfe_hat_2));
+			//lambda_dqs_e_opt_kp1_2.d = -((w_e_hat*w_e_hat + A1*A1*rfe_hat_2*rs_hat_2 + C1*C1*rfe_hat_2*rr_hat_2)*tem_star_2*lambda_dqr_e_2.q  +  (A1*B2*rs_hat_2 + C1*D2*rr_hat_2)*rfe_hat_2*T_const*lambda_dqr_e_2.d*lambda_dqr_e_2.d   +   lambda_dqr_e_2.d*lambda_dqr_e_2.q*rfe_hat_2*T_const*(A1*A2*rs_hat_2 + C1*C2*rr_hat_2)) /  (T_const*(rfe_hat_2*rs_hat_2*A1*A1 + rfe_hat_2*rr_hat_2*C1*C1 + w_e_hat*w_e_hat)*(lambda_dqr_e_2.q*lambda_dqr_e_2.q +  lambda_dqr_e_2.q*lambda_dqr_e_2.d));
+			lambda_dqs_e_opt_kp1_2.d = -((omega_l_hat_kp1_1*omega_l_hat_kp1_1 + A1*A1*rfe_hat_2*rs_hat_2 + Co1*Co1*rfe_hat_2*rr_hat_2)*tem_star_2*lambda_dqr_e_2.q  +  (A1*B2*rs_hat_2 + Co1*D2*rr_hat_2)*rfe_hat_2*T_const*lambda_dqr_e_2.d*lambda_dqr_e_2.d   +   lambda_dqr_e_2.d*lambda_dqr_e_2.q*rfe_hat_2*T_const*(A1*A2*rs_hat_2 + Co1*Co2*rr_hat_2)) /  (T_const*(rfe_hat_2*rs_hat_2*A1*A1 + rfe_hat_2*rr_hat_2*Co1*Co1 + omega_l_hat_kp1_1*omega_l_hat_kp1_1)*(lambda_dqr_e_2.q*lambda_dqr_e_2.q +  lambda_dqr_e_2.d*lambda_dqr_e_2.d));
+			P_loss = 0.666*(v_dqs_s_star_2.q*i_dqs_s_2.q  +v_dqs_s_star_2.d*i_dqs_s_2.d);
+		#endif
+		
+		
+		
+		
+		/**************************************************************************/
+		/**************************************************************************/
+		/**     Triplen Harmonic Injection										 **/
+		/**	 																	 **/
+		/**	 																	 **/
+		/**************************************************************************/
+		/**************************************************************************/		
+		
+		v_n_2 = 0.0f;
+		
+		#ifdef _TRIPLEN_INJ_2	
+			if(v_a_2 > v_b_2) { v_max_2 = v_a_2;	v_min_2 = v_b_2; }
+			else { v_max_2 = v_b_2;	v_min_2 = v_a_2; }
+			if(v_c_2 > v_max_2)	v_max_2 = v_c_2;	
+			if(v_c_2 < v_min_2)	v_min_2 = v_c_2;
+		
+			v_n_2 = 0.5f*(v_max_2 + v_min_2);
+		#endif	

@@ -1,0 +1,11 @@
+ s = tf('s');
+c = 1/0.22e-3;
+a = 2*pi*1000;
+b = 0.72/0.4e-3;
+d = 2*pi*3000;
+n=1;
+P = bodeoptions;
+P.MagUnits = 'abs';
+P.FreqUnits = 'Hz'; P.MagScale = 'linear';
+H = c*d*(s+a)^n/((s+b)*(s+a)^n+a^n*c)/(s+d);
+bode(s*H,P), grid on, hold on;

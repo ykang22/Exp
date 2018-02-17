@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding='ISO-8859-1'?>
+<visualdsp-project schema="17" name="GE_Stand" file="Narciso_DBDTFC.dpj" version="1">
+	<!-- Project build target -->
+	<target>
+		<processor revision="Automatic">ADSP-21161</processor>
+		<extension>.ldr</extension>
+		<type>Loader file</type>
+	</target>
+	<!-- Configurations -->
+	<configurations active="Debug">
+		<configuration name="Debug">
+			<intermediate-dir>.\Debug</intermediate-dir>
+			<output-dir>.\Debug</output-dir>
+			<changed-property-page-flags>0</changed-property-page-flags>
+			<tools>
+				<tool type="Compiler">
+					<option><![CDATA[|-Version>5.0|-O>1|-O1>1|-Ov>100|-ipa>1|-g>1|-no-annotate>0|-Oa>1|-save-temps -path-output>0|-ED>0|-no-auto-attrs>0|-no-builtin>0|-no-extra-keywords>0|-enum-is-int>0|-no-fp-associative>0|-structs-do-not-overlap>1|-implicit-pointers>0|-eh >0|-rtti>0|-check-init-order>0|-ignore-std>1|-const-read-write>0|-const-strings>0|-no-multiline>1|-misra>0|-misra-strict>0|-misra-no-cross-module>0|-misra-no-runtime>0|-misra-testing>0|-misra-suppress-advisory>0|-D>DEBUG,XCP2005|-I>"C:\Users\RDL\Documents\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB";"C:\Users\RDL\Documents\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\DebugXCP2005"|-no-std-inc>0|-double-size-32>1|-double-size-any>0|-no-simd>1|-section switch=seg_pmda>0|-no-shift-to-add>0|-pguide>0|NOSWITCH>0|-flags-compiler --diag_warning,implicit_func_decl>1|-warn-protos>1|-flags-compiler --diag_warning,call_not_inlined>0|-Wremarks>0|-w>0]]></option>
+				</tool>
+				<tool type="Assembler">
+					<option><![CDATA[|-Version>4.5|-v>0|-g>1|-l>0|-save-temps>0|-sp>0|-i>C:\Users\Kang\Desktop\DSP_bench_software\AixControl\lib\XCS2000LIB]]></option>
+				</tool>
+				<tool type="Linker">
+					<option><![CDATA[|-Version>5.0|-flags-link -t>0|-flags-link -S>0|-flags-link -s>1|-mem>0|-flags-link -warnonce>0|-map>1|-flags-link -xref>0|-flags-link -save-temps>0|-flags-link -ip>1|-L>"C:\Users\RDL\Documents\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\DebugXCP2005"|-MD>DEBUG,XCP2005|-flags-link -e>1|-flags-link -ev>0|-flags-link -MD__ADI_LIBEH__>0|-add-debug-libpaths>1]]></option>
+				</tool>
+				<tool type="Splitter">
+					<option><![CDATA[|-Version>5.0|-pm>1|-dm>1|-64>0|s>0|-ram>1|-norom>0|-f b>1|-r> 8 8 32|-u>0]]></option>
+				</tool>
+				<tool type="Loader">
+					<option><![CDATA[|-Version>4.5|-bPROM>1|-fHEX>1|-HostWidth 8>1|-p>0x0|-t>32765|-v>0|-id1exe=>1: |-id2exe=>2: |-id3exe=>3: |-id4exe=>4: |-id5exe=>5: |-id6exe=>6: |-l>C:\Program Files\Analog Devices\VisualDSP 5.1\211xx\ldr\161_prom.dxe|UserKernel>0]]></option>
+				</tool>
+				<tool type="Archiver">
+					<option><![CDATA[]]></option>
+				</tool>
+				<tool type="VdkGen">
+					<option><![CDATA[]]></option>
+				</tool>
+			</tools>
+		</configuration>
+		<configuration name="Release">
+			<intermediate-dir>.\Release</intermediate-dir>
+			<output-dir>.\Release</output-dir>
+			<changed-property-page-flags>0</changed-property-page-flags>
+			<tools>
+				<tool type="Compiler">
+					<option><![CDATA[|-Version>5.0|-O>1|-O1>1|-Ov>100|-ipa>0|-g>0|-no-annotate>0|-save-temps -path-output>0|-ED>0|-no-auto-attrs>0|-no-builtin>0|-no-extra-keywords>0|-enum-is-int>0|-no-fp-associative>0|-structs-do-not-overlap>1|-implicit-pointers>0|-eh >0|-rtti>0|-check-init-order>0|-ignore-std>0|-const-read-write>0|-const-strings>0|-no-multiline>1|-misra>0|-misra-strict>0|-misra-no-cross-module>0|-misra-no-runtime>1|-misra-testing>1|-misra-suppress-advisory>0|-I>"C:\Users\RDL\Documents\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB"|-no-std-inc>0|-double-size-32>1|-double-size-any>0|-no-simd>0|-section switch=seg_pmda>0|-no-shift-to-add>0|-pguide>0|NOSWITCH>0|-flags-compiler --diag_warning,implicit_func_decl>0|-warn-protos>1|-flags-compiler --diag_warning,call_not_inlined>0|-Wremarks>0|-w>0]]></option>
+				</tool>
+				<tool type="Assembler">
+					<option><![CDATA[|-Version>4.5|-v>0|-g>0|-l>0|-save-temps>0|-sp>0|-i>I:\DBDTC\Bench_Software\AixControl\lib\XCS2000LIB]]></option>
+				</tool>
+				<tool type="Linker">
+					<option><![CDATA[|-Version>5.0|-flags-link -t>0|-flags-link -S>0|-flags-link -s>0|-mem>0|-flags-link -warnonce>0|-map>0|-flags-link -xref>0|-flags-link -save-temps>0|-flags-link -ip>0|-L>"C:\Users\RDL\Documents\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&DataLinkFile\Embedded\XCS2000LIB\ReleaseXCP2005"|-flags-link -e>0|-flags-link -ev>0|-flags-link -MD__ADI_LIBEH__>0|-add-debug-libpaths>0]]></option>
+				</tool>
+				<tool type="Splitter">
+					<option><![CDATA[|-Version>5.0|-pm>1|-dm>0|-64>0|s>0|-ram>1|-norom>0|-f s3>1|-r> 8 8 32|-u>0]]></option>
+				</tool>
+				<tool type="Loader">
+					<option><![CDATA[|-Version>4.5|-bPROM>1|-fHEX>1|-HostWidth 8>1|-p>0x0|-t>32765|-v>0|-id1exe=>1: |-id2exe=>2: |-id3exe=>3: |-id4exe=>4: |-id5exe=>5: |-id6exe=>6: |-l>C:\Program Files\Analog Devices\VisualDSP 5.1\211xx\ldr\161_prom.dxe|UserKernel>0]]></option>
+				</tool>
+				<tool type="Archiver">
+					<option><![CDATA[]]></option>
+				</tool>
+				<tool type="VdkGen">
+					<option><![CDATA[]]></option>
+				</tool>
+			</tools>
+		</configuration>
+	</configurations>
+	<!-- Project folders -->
+	<folders>
+		<folder name="Header Files" ext=".h,.hpp,.hxx">
+			<files>
+				<file name=".\ComplexVar.h">
+				</file>
+				<file name=".\ENCOD_A.h">
+				</file>
+				<file name=".\hardware.h">
+				</file>
+				<file name=".\init_pwm.h">
+				</file>
+				<file name=".\main.h">
+				</file>
+				<file name=".\WT_CurrentObserver.h">
+				</file>
+				<file name=".\XCSDataLink.h">
+				</file>
+			</files>
+		</folder>
+		<folder name="Linker Files" ext=".ldf,.dlb">
+			<files>
+				<file name="..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&amp;DataLinkFile\Embedded\XCS2000LIB\xcp2005.ldf">
+					<file-configurations>
+						<file-configuration name="Debug">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Debug</intermediate-dir>
+							<output-dir>.\Debug</output-dir>
+						</file-configuration>
+						<file-configuration name="Release">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Release</intermediate-dir>
+							<output-dir>.\Release</output-dir>
+						</file-configuration>
+					</file-configurations>
+				</file>
+				<file name="..\..\2015 From Kang_DBDTFC_Software\Code\New_XCS2000LIB&amp;DataLinkFile\Embedded\XCS2000LIB\XCSDataLink.dlb">
+					<file-configurations>
+						<file-configuration name="Debug">
+							<excluded-flag value="no"/>
+						</file-configuration>
+						<file-configuration name="Release">
+							<excluded-flag value="no"/>
+						</file-configuration>
+					</file-configurations>
+				</file>
+			</files>
+		</folder>
+		<folder name="Source Files" ext=".c,.cpp,.cxx,.asm,.dsp,.s">
+			<files>
+				<file name=".\ComplexVar.cpp">
+					<file-configurations>
+						<file-configuration name="Debug">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Debug</intermediate-dir>
+							<output-dir>.\Debug</output-dir>
+						</file-configuration>
+						<file-configuration name="Release">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Release</intermediate-dir>
+							<output-dir>.\Release</output-dir>
+						</file-configuration>
+					</file-configurations>
+				</file>
+				<file name=".\hardware.cpp">
+					<file-configurations>
+						<file-configuration name="Debug">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Debug</intermediate-dir>
+							<output-dir>.\Debug</output-dir>
+						</file-configuration>
+						<file-configuration name="Release">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Release</intermediate-dir>
+							<output-dir>.\Release</output-dir>
+						</file-configuration>
+					</file-configurations>
+				</file>
+				<file name=".\main.cpp">
+					<file-configurations>
+						<file-configuration name="Debug">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Debug</intermediate-dir>
+							<output-dir>.\Debug</output-dir>
+						</file-configuration>
+						<file-configuration name="Release">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Release</intermediate-dir>
+							<output-dir>.\Release</output-dir>
+						</file-configuration>
+					</file-configurations>
+				</file>
+				<file name=".\WT_CurrentObserver.cpp">
+					<file-configurations>
+						<file-configuration name="Debug">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Debug</intermediate-dir>
+							<output-dir>.\Debug</output-dir>
+						</file-configuration>
+						<file-configuration name="Release">
+							<excluded-flag value="no"/>
+							<build-with-flag value="project"/>
+							<intermediate-dir>.\Release</intermediate-dir>
+							<output-dir>.\Release</output-dir>
+						</file-configuration>
+					</file-configurations>
+				</file>
+			</files>
+		</folder>
+	</folders>
+</visualdsp-project>

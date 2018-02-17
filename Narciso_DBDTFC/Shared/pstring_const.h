@@ -1,0 +1,93 @@
+/**
+ * 2006-11-27: PSTRINGs which are too short are now filled with '\0' by default
+ **/
+
+#pragma once
+#include"always.h"
+
+#define PSTRING(n,s) { PSTRING##n(s "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0") }
+
+#define PSTRING_1(s,o)  (s[0+o]<<24)
+#define PSTRING_2(s,o) ((s[0+o]<<24)|(s[1+o]<<16))
+#define PSTRING_3(s,o) ((s[0+o]<<24)|(s[1+o]<<16)|(s[2+o]<<8))
+#define PSTRING_4(s,o) ((s[0+o]<<24)|(s[1+o]<<16)|(s[2+o]<<8)|(s[3+o]))
+
+#define PSTRING0(s)
+
+#define PSTRING1(s) PSTRING_1(s,0)
+#define PSTRING2(s) PSTRING_2(s,0)
+#define PSTRING3(s) PSTRING_3(s,0)
+#define PSTRING4(s) PSTRING_4(s,0)
+
+#define PSTRING5(s) PSTRING_4(s,0),PSTRING_1(s,4)
+#define PSTRING6(s) PSTRING_4(s,0),PSTRING_2(s,4)
+#define PSTRING7(s) PSTRING_4(s,0),PSTRING_3(s,4)
+#define PSTRING8(s) PSTRING_4(s,0),PSTRING_4(s,4)
+
+#define PSTRING9(s) PSTRING8(s),PSTRING_1(s,8)
+#define PSTRING10(s) PSTRING8(s),PSTRING_2(s,8)
+#define PSTRING11(s) PSTRING8(s),PSTRING_3(s,8)
+#define PSTRING12(s) PSTRING8(s),PSTRING_4(s,8)
+
+#define PSTRING13(s) PSTRING12(s),PSTRING_1(s,12)
+#define PSTRING14(s) PSTRING12(s),PSTRING_2(s,12)
+#define PSTRING15(s) PSTRING12(s),PSTRING_3(s,12)
+#define PSTRING16(s) PSTRING12(s),PSTRING_4(s,12)
+
+#define PSTRING17(s) PSTRING16(s),PSTRING_1(s,16)
+#define PSTRING18(s) PSTRING16(s),PSTRING_2(s,16)
+#define PSTRING19(s) PSTRING16(s),PSTRING_3(s,16)
+#define PSTRING20(s) PSTRING16(s),PSTRING_4(s,16)
+
+
+#define PSTRING21(s) PSTRING20(s),PSTRING_1(s,20)
+#define PSTRING22(s) PSTRING20(s),PSTRING_2(s,20)
+#define PSTRING23(s) PSTRING20(s),PSTRING_3(s,20)
+#define PSTRING24(s) PSTRING20(s),PSTRING_4(s,20)
+
+#define PSTRING25(s) PSTRING24(s),PSTRING_1(s,24)
+#define PSTRING26(s) PSTRING24(s),PSTRING_2(s,24)
+#define PSTRING27(s) PSTRING24(s),PSTRING_3(s,24)
+#define PSTRING28(s) PSTRING24(s),PSTRING_4(s,24)
+
+#define PSTRING29(s) PSTRING28(s),PSTRING_1(s,28)
+#define PSTRING30(s) PSTRING28(s),PSTRING_2(s,28)
+#define PSTRING31(s) PSTRING28(s),PSTRING_3(s,28)
+#define PSTRING32(s) PSTRING28(s),PSTRING_4(s,28)
+
+#define PSTRING33(s) PSTRING32(s),PSTRING_1(s,32)
+#define PSTRING34(s) PSTRING32(s),PSTRING_2(s,32)
+#define PSTRING35(s) PSTRING32(s),PSTRING_3(s,32)
+#define PSTRING36(s) PSTRING32(s),PSTRING_4(s,32)
+
+#define PSTRING37(s) PSTRING36(s),PSTRING_1(s,36)
+#define PSTRING38(s) PSTRING36(s),PSTRING_2(s,36)
+#define PSTRING39(s) PSTRING36(s),PSTRING_3(s,36)
+#define PSTRING40(s) PSTRING36(s),PSTRING_4(s,36)
+
+
+#define PSTRING41(s) PSTRING40(s),PSTRING_1(s,40)
+#define PSTRING42(s) PSTRING40(s),PSTRING_2(s,40)
+#define PSTRING43(s) PSTRING40(s),PSTRING_3(s,40)
+#define PSTRING44(s) PSTRING40(s),PSTRING_4(s,40)
+
+#define PSTRING45(s) PSTRING44(s),PSTRING_1(s,44)
+#define PSTRING46(s) PSTRING44(s),PSTRING_2(s,44)
+#define PSTRING47(s) PSTRING44(s),PSTRING_3(s,44)
+#define PSTRING48(s) PSTRING44(s),PSTRING_4(s,44)
+
+#define PSTRING49(s) PSTRING48(s),PSTRING_1(s,48)
+#define PSTRING50(s) PSTRING48(s),PSTRING_2(s,48)
+#define PSTRING51(s) PSTRING48(s),PSTRING_3(s,48)
+#define PSTRING52(s) PSTRING48(s),PSTRING_4(s,48)
+
+#define PSTRING53(s) PSTRING52(s),PSTRING_1(s,52)
+#define PSTRING54(s) PSTRING52(s),PSTRING_2(s,52)
+#define PSTRING55(s) PSTRING52(s),PSTRING_3(s,52)
+#define PSTRING56(s) PSTRING52(s),PSTRING_4(s,52)
+
+#define PSTRING57(s) PSTRING56(s),PSTRING_1(s,56)
+#define PSTRING58(s) PSTRING56(s),PSTRING_2(s,56)
+#define PSTRING59(s) PSTRING56(s),PSTRING_3(s,56)
+#define PSTRING60(s) PSTRING56(s),PSTRING_4(s,56)
+
